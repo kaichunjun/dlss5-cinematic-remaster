@@ -1,0 +1,4 @@
+interface:
+  display_name: "DLSS5 电影级写实重绘"
+  short_description: "结构保真、抗涂抹的双档电影级神经重绘"
+  default_prompt: "先根据用户意图和当前图片判断使用正常档或深度档，再逐图应用 DLSS5 式材质、光影、高光控制和抗涂抹效果；只从当前图片提取人物、物体、颜色与场景结构。"
