@@ -60,3 +60,12 @@ Both modes are `tested-on-this-setup`. Four additional pairs in `assets/comparis
 - **Palette changes:** reduce tone strength; require source color preservation; use a detail-only or tone-preservation mode.
 - **New patterns or accessories appear:** strengthen object/costume lock and remove open-ended words such as ornate, intricate, embellished or luxurious.
 - **Video flickers:** use temporal guidance and optical flow or motion vectors; lower local structure and pass count before adding prompt detail.
+
+## User-supplied actual DLSS 5 runtime reference — 2026-09-21
+
+- **Reference:** `assets/reference-actual-dlss5-nr-portrait.jpg`, identified by the user as Visual Enhancer DLSS 5 Neural Rendering output.
+- **Observed signature:** broad warm transmission through blonde hair, cyan environmental spill, lifted shadow color, smooth high-luminance diffusion, softened background contrast, and a coherent atmospheric veil across the portrait.
+- **Useful behavior:** lighting wraps around the subject at low spatial frequency instead of looking like ordinary sharpening; the face, hair and ornaments share the same environment; bright regions retain colored gradients.
+- **Observed weakness:** the veil lowers local contrast, merges some hair-lock and material boundaries, softens crown and crystal edges, and gives the frame a slightly washed, painted surface.
+- **Calibration target:** retain the warm/cool light transport and atmospheric cohesion, then restore mid-frequency separation without clarity halos, black crush, aggressive sharpening, or added texture.
+- **Evidence boundary:** the image is a user-labeled runtime result. A processing log and exact source/output frame pair were not supplied with this reference, so use it for visual-direction calibration rather than pixel-level runtime validation.

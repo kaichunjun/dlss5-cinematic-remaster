@@ -9,6 +9,8 @@ Create the visual effect through **anchored reconstruction**, not a free redesig
 
 Use the matched source/remaster pairs in `assets/comparison-*.jpg` as the persistent **quality-direction references** supplied by the user. Read them as transferable behaviors—cool material depth, controlled highlights, atmospheric glow, strong hero lighting, and preserved mid-frequency detail. Never copy their characters, objects, scenery, palette, or composition into a new image.
 
+Use `assets/reference-actual-dlss5-nr-portrait.jpg` as the user-supplied **actual-runtime effect reference**. Its useful signature is low-frequency warm/cool light transport, lifted environmental illumination, colored highlight diffusion, and coherent atmosphere. Preserve that behavior while correcting its gray veil, softened material boundaries, and hair-detail smear. It is a visual-direction reference rather than proof for an arbitrary new render.
+
 ## Six-layer visual model
 
 1. **Structure lock:** preserve face identity and proportions, pose, silhouette, costume geometry, camera, crop, perspective, scene layout, and object count.
