@@ -1,9 +1,10 @@
-# Complete requirements and method contract — v3
+# Complete requirements and method contract — v4
 
 The brief was confirmed on 2026-09-30 to concern this Skill's complete requirements, rather than a competition rulebook. Latest explicit feedback overrides earlier sample preferences.
 
 | Requirement | Implementation | How to assess |
 |---|---|---|
+| Traditional Photoshop-style adjustment is the default | Curves, local masks, dodge/burn, color balance; generation only after explicit opt-in | Actual execution uses existing pixels with no synthesis/warp; retain the layer/recipe record |
 | One reusable look across different images | Fresh source inspection, explicit input roles, scene-free lighting core | Next image carries no unrelated person/prop/palette |
 | Normal and Deep, decide before execution | Internal mode decision, one-line explanation; infer from intent | Explicit mode respected; ambiguity questions only when necessary |
 | Clearly visible effect, especially Deep | Strengthen named source-supported light/shadow relationships | Fit-to-screen full pair shows lighting uplift, not just exposure/chroma |
@@ -18,13 +19,13 @@ The brief was confirmed on 2026-09-30 to concern this Skill's complete requireme
 
 ## What the method does
 
-Original image → observable-content brief → mode and edit contract → real image editor → four-gate visual review → one-axis correction if needed → output + comparisons + provenance.
+Original image → observable-content brief → Normal/Deep intensity → per-image adjustment stack → native layers or deterministic calculations → four-gate review → recompute from original if needed → result + editable evidence + comparisons.
 
 This is a **DLSS5-inspired cinematic image-relighting workflow**. The visual inspiration is broad light transport, coherent material response and atmosphere; actual DLSS runtime provenance cannot be inferred from appearance. A prompt Skill changes instructions, not model weights, and does not run NVIDIA neural rendering, ray tracing, intrinsic decomposition or a PBR renderer.
 
 ## Capability boundaries that affect the result
 
-- A generative full-frame editor can redraw fine lines despite preservation instructions. Exact text/logo/costume replication needs an available deterministic/protected-region route or explicit qualification; avoid promising 100% preservation.
+- The default adjustment route retains source geometry and lines, but clipping/over-darkening can hide them. It creates apparent light, not missing 3D geometry. An explicitly opted-in generative full-frame editor can redraw fine lines despite preservation instructions. Exact text/logo/costume replication needs an available deterministic/protected-region route or explicit qualification; avoid promising 100% preservation.
 - When the editor hides model version/seed, retain the exact inputs and prompt but call reproduction approximate. Repeated images are trials, not independent source cases.
 - A static remaster skill supports still images. Batch consistency needs representative samples; video needs temporal processing and contiguous-frame checks. It is not a Windows installer, game injection tool or always-on desktop filter.
 - Missing source pixels are unknown, not recoverable ground truth. Enlarging an output or requesting “8K” does not establish newly recovered detail.

@@ -1,53 +1,33 @@
-# DLSS5 风格电影光影重绘 Skill · v3
+# 电影光感调色与局部光影 Skill · v4
 
 [English](README.md)
 
-用于现有动漫、游戏、CG 和照片的双档光影增强工作流。目标是**效果明显、环境光统一、阴影有层次、材质可读，同时保持角色与构图、克制色彩、避免涂抹**。每张图重新分析，继承处理方法，示例的角色、场景和配色不会自动套入新图。
+**像手工 PS 一样，用曲线、局部蒙版、加深减淡和克制调色塑造光感。** AI 负责分析与执行，默认对原有像素做传统调整，沿用原图的脸、线条、纹样和构图。每张图单独设计调整层，继承方法而非套用示例人物或坐标。
 
-这是提供给 AI 助手执行的 Skill，包含提示词、工具适配与验收方法；没有 DLSS 运行时／NVIDIA 模型，也不是 Windows 实时过滤软件。
+保留历史调用名 `dlss5-cinematic-remaster`。DLSS5 指视觉灵感；本仓库没有 NVIDIA 模型／运行时，也没有 Windows 实时桌面过滤器。
 
-## 正常档与深度档
+## 正常／深度两档
 
-| 档位 | 目标 |
+| 档位 | 处理目标 |
 |---|---|
-| Normal 正常档 | 清楚而克制地增强形体阴影、材质区分与高光过渡 |
-| Deep 深度档 | 明显加强已有环境受光、明暗关系、接触阴影和局部光韵，形成更有气场的画面 |
+| Normal 正常档 | 清楚、克制地增强形体明暗、材质分离与高光层次 |
+| Deep 深度档 | 更明显的焦点受光、背光阴影、局部环境光与空间层次 |
 
-先判断档位，再简短说明；明确指定优先。深度档提高光影强度，保真规则和原图色彩强度与正常档相同。当前默认尤其保护肤色、中性色和未受光背景，避免把强氛围做成高饱和滤镜。
+两档都默认纯调整、原图色彩强度优先。深度档提高光影幅度；饱和度增强、全图模糊和生成式重绘均非默认。生成式重构只在明确要求时启用，工具缺失也会如实说明，避免悄悄换成重绘。
 
-## v3 改进
+## v4 的实际对比
 
-本次审查 15 个本地相关 Skill，并筛查 7 个公开仓库的 22 个入口；存在同源重叠，范围和取舍完整列于 [审查报告](references/skill-audit.md)，没有声称穷尽全网。
+同一张雨夜图做传统调整，**左原图，右结果**：脸部受光更亮、背光衣袖更深，背景、发丝、表情和饰物沿用原件。下图是展示预览；完整原生尺寸图及细节另行检查。
 
-- 原件／风格参考角色明确；逐图建立保留内容表，照片、动漫、CG、海报分别适配。
-- 将内容与身份、可见光影差距、色彩、清晰度与受光一致性分成四项独立检查。
-- 每次修正回到原件，只针对一个问题，初次结果后最多两次修正；保留失败与用户反馈。
-- 真实工具设置按能力使用；文字要求不会被当成掩膜、结构控制或实际 PBR 重建。
-- 比较与文件证据可自动生成，视觉结论仍基于实看；静帧、批量、视频与实时运行边界分别说明。
+![Deep 纯调整完整左右对比](assets/v4-portrait-deep-side-by-side.png)
 
-完整需求逐条追踪见 [requirements.md](references/requirements.md)。
+[中线划像对比](assets/v4-portrait-deep-center-wipe.png) · [原尺寸结果](assets/v4-portrait-deep-result.png) · [Normal 完整对比](assets/v4-portrait-normal-side-by-side.png)
 
-## 新版对比图
-
-**左原图，右结果；中线划分为展示预览。** 完整双图和原生细节检查才用于验收。
-
-Deep 群像：原有羊皮纸与人物受光更鲜明，色彩相较 v2 收敛。细小线条／纹样仍有重绘，属于有条件预览。
-
-![Deep 群像中线对比](assets/v3-ensemble-center-wipe.png)
-
-[查看完整左右对比](assets/v3-ensemble-side-by-side.png)
-
-Normal 雨夜单人图：沿已有灯笼方向增强发缘、服装阴影与金属高光。助手视觉检查通过；用户确认待定。
-
-![Normal 雨夜中线对比](assets/v3-portrait-center-wipe.png)
-
-[查看完整左右对比](assets/v3-portrait-side-by-side.png)
-
-v3 新增两次执行、两个输入；结合 v2 为五次执行、三个独立输入。精细纹样保持仍有限，底层模型版本／seed 未暴露；当前没有通用稳定成功率。真实照片与连续视频尚无 v3 实测。见 [实测记录](references/validation-v3.md) 和 [精确提示词](references/v3-test-prompts.json)。
+新流程测试一个输入、两档和一次深度档复算，14 项计算检查通过；助手在该图上视觉验收通过，用户审美确认待定。没有宣称全题材稳定成功率。旧版生成对比见 [v3 历史记录](references/validation-v3.md)，它们无法证明新流程的效果。详见 [v4 验证](references/validation-v4.md)。
 
 ## 安装与调用
 
-macOS／Linux，安装至 Codex Skill 目录：
+macOS／Linux：
 
 ```bash
 git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git ~/.codex/skills/dlss5-cinematic-remaster
@@ -59,23 +39,30 @@ Windows PowerShell：
 git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git "$env:USERPROFILE\.codex\skills\dlss5-cinematic-remaster"
 ```
 
-已有干净克隆可在该目录执行 `git pull --ff-only`；更新前保留本地自定义内容。也可把仓库文件夹放进 Skill 目录。安装后若未出现，重启 Codex。附图调用：
+也可将仓库文件夹复制到 Skill 目录。已有干净克隆可 `git pull --ff-only`，更新前保留自己的修改；安装后若未出现，重启 Codex。附图调用：
 
 ```text
-$dlss5-cinematic-remaster 用深度档：光影与环境氛围明显，保留原图人物和构图，色彩克制。
+$dlss5-cinematic-remaster 深度档，纯调整：用曲线和局部蒙版做明显光感，保留原图线条、脸和纹样，色彩克制。
 ```
 
-可改成“正常档”，或让助手判断。执行需要宿主提供图片编辑工具；仓库文本本身没有生成引擎。内置编辑默认使用，无需本 Skill 单独配置模型密钥。可选外部路线按实际工具能力和任务授权使用。
+优先用宿主里实际可用的图像编辑器调整层；宿主无需图像生成模型。原生编辑器可以保留其支持的图层文件，连接器若仅给扁平图则明确标注。
 
-## 文件导航
+本地备用工具需要 Python 3.9+、NumPy 和 Pillow，实际执行：
 
-- [SKILL.md](SKILL.md)：自包含执行入口与双档选择。
-- [prompt-recipes.md](references/prompt-recipes.md)：母模板、档位及四类问题修正。
-- [tool-adapters.md](references/tool-adapters.md)：介质、真实工具、批次与视频适配。
-- [evaluation.md](references/evaluation.md)：四项验收、交付方法与历史反例。
-- [review_artifact.py](scripts/review_artifact.py)：需要 Python 3.9+、FFmpeg／ffprobe 的可选比较与元数据工具；不会自动评判画质。
-- [skill-audit.md](references/skill-audit.md)、[source-inventory.json](references/source-inventory.json)：吸收／排除的依据、来源与源码哈希。
-- [validation-v3.md](references/validation-v3.md)：真实生成记录及能力缺口。
-- [runtime-controls.md](references/runtime-controls.md)：隔离的历史社区应用经验笔记，仅供明确运行时请求参考，非通用权威参数。
+```bash
+python scripts/apply_adjustments.py --source your-source.png --recipe your-image.json --output-dir grade-new
+```
 
-本项目自写文档、提示词和脚本使用 [MIT License](LICENSE)。游戏／角色示例及第三方资料权利归原权利人；见 [NOTICE.md](NOTICE.md)。
+AI 按当前图片写 `your-image.json`；[示例配方](references/v4-portrait-deep.json)仅适用于这里的雨夜图。工具返回结果 PNG、逐层步骤、蒙版及可复算 JSON，**没有伪称 PSD 或独立 EXE**。支持单张 8-bit RGB/RGBA；16-bit/HDR 母版应在支持它的原生编辑器处理。原图保留，输出目录须为新目录。
+
+## 文件与方法
+
+- [SKILL.md](SKILL.md)：双档、纯调整默认路线、逐图分析与验收。
+- [adjustment-workflow.md](references/adjustment-workflow.md)：Photoshop 调整层方法、本地配方语法与真实计算边界。
+- [apply_adjustments.py](scripts/apply_adjustments.py)：确定性调整；无生成模型、几何重采样、修补或画面模糊。
+- [tool-adapters.md](references/tool-adapters.md)：原生编辑器、连接器、批量／视频、显式生成路线。
+- [requirements.md](references/requirements.md)、[evaluation.md](references/evaluation.md)：完整需求和四项验收。
+- [review_artifact.py](scripts/review_artifact.py)：Python + FFmpeg/ffprobe，生成对比及原生细节裁切，保持母版；脚本不自动评画质。
+- [skill-audit.md](references/skill-audit.md)：此前 Skill 调研与本轮方法修订；历史 [prompt-recipes.md](references/prompt-recipes.md)只给显式生成请求使用。
+
+光感由现有像素的明暗／色彩关系塑造；真实三维光照与缺失纹理没有因此重建。蒙版与强度仍需逐图设计。自写文档与脚本使用 [MIT License](LICENSE)，第三方示例权利说明见 [NOTICE.md](NOTICE.md)。

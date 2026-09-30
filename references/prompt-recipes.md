@@ -1,5 +1,6 @@
 # v3 relighting recipes
 
+> Historical generative route. v4 defaults to traditional pixel adjustments; read this file only for explicitly authorized generation or historical evidence. These prompts/results do not validate the v4 adjustment pipeline.
 Use one filled core and one mode suffix. This is a reusable edit contract, not a model-independent set of numeric controls. Keep only constraints that matter for the current image; specificity beats long adjective and prohibition lists.
 
 ## Shared core

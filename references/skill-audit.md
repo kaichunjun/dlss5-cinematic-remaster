@@ -60,3 +60,11 @@ fal 的 11 个入口为：fal-workflow、fal-regenerate-3d、fal-prompting、mod
 7. 照片、批次与视频路线条件化，静帧成功不会升级成全局实时或时间稳定承诺。
 
 文档和工具链完整性已单独检查。视觉证据及缺口见 [validation-v3.md](validation-v3.md)，需求追踪见 [requirements.md](requirements.md)。这是完整执行版本，通用画质成功率仍需更广泛的真实输入验证。
+
+## v4 method correction — 2026-09-30
+
+Latest user request selects traditional Photoshop-style color/tonal layers and local masks, with minimal direct generative redraw. This supersedes v3's built-in generative default. The skill-creator practices retained are concise routing, real capabilities, executable helper validation and evidence separated from aesthetic approval.
+
+Adopt Adobe adjustment layers and masked Curves/dodge-burn as the execution model. Keep Normal/Deep as intensity levels, source-chroma restraint and four-gate inspection. Generation is explicit opt-in; no missing-tool fallback to synthesis. Optional segmentation proposes selections only. PSD claims require an actual layered file; the local helper outputs JSON, masks and PNG steps. Broad example ellipses and RGB math are approximations, not calibrated Photoshop/PBR reconstruction.
+
+Primary sources checked in this revision: [Adobe adjustment layers](https://helpx.adobe.com/au/photoshop/desktop/create-manage-layers/color-adjustment-fill-layers/work-with-adjustment-and-fill-layers.html), [Adobe masked Curves](https://www.adobe.com/learn/photoshop/web/lighten-darken-photos-with-curves). Prior local/public Skill inventory remains the dated v3 audit, not a new exhaustive internet survey.

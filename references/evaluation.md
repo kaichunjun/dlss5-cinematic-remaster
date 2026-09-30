@@ -1,4 +1,4 @@
-# Visual assessment and artifact review — v3
+# Visual assessment and artifact review — v4
 
 ## Four independent gates
 
@@ -8,6 +8,8 @@
 | B — visible lighting uplift | At least two named changes in existing lighting/material response; Deep clearly stronger at fit-to-screen size | Nearly identical result, uniform exposure change, global vividness, new scenery mistaken for enhancement |
 | C — color restraint | Source-faithful skin/whites/neutrals/unlit background; colored spill local and source-supported | Orange neutral material, neon blue sky, broad complementary wash, gray blanket used to hide oversaturation |
 | D — clarity and coherence | Readable hair locks/ornaments/edges, clean gradient highlights, plausible shared light direction | Painted smear, eye/hand blur, clipped cores, black crush, wet-looking matte surfaces, sharpening halos |
+
+For the default adjustment route also verify source/export geometry, absence of synthesis/resampling, intact alpha and replay settings. These are computational checks, separate from whether new shading hides lines or expressions. The local helper preserves RGB geometry but ICC conversion and tonal/color layers change pixel values; compare its working-source baseline.
 
 First inspect full source and output at the same display scale. Then inspect every visible face, hands/props, motifs and tiny subjects in native-resolution crops. Do not claim a crop was inspected at 100% when it was upscaled or shown as a small thumbnail. Different output dimensions mean different detail capacity; state this limitation. Text and linework can drift even with perfect large-scale layout.
 
@@ -37,11 +39,11 @@ python3 scripts/review_artifact.py \
 
 ROI coordinates are fractions of the whole frame: x,y,width,height. The named source and candidate crop files retain native pixels; the main comparison previews use downscaling/fit only, without stretching unequal aspect ratios. Aspect differences over the helper's 1% comparison tolerance stop generation of a misleading wipe; this is an engineering guard, not an aesthetic similarity threshold. No face detection or automatic fidelity score is claimed.
 
-The report records sizes, hashes, output files, preview scaling, tool versions and optional provided run-card data. Its `visual_review` is deliberately `unassessed`; inspection notes go in a separate assessment record. A successful script/Skill validator proves formatting/execution, not successful remastering. See [validation-v3.md](validation-v3.md) for current tests.
+The report records sizes, hashes, output files, preview scaling, tool versions and optional provided run-card data. Its `visual_review` is deliberately `unassessed`; inspection notes go in a separate assessment record. A successful script/Skill validator proves formatting/execution, not successful remastering. See [validation-v4.md](validation-v4.md) for current adjustment tests; [v3](validation-v3.md) records the historical generative route.
 
 ## Historical evidence follows
 
-Older wording below is retained as dated observation, not current acceptance or universal parameter advice. Use the v3 four gates for new work.
+Older wording below is retained as dated observation, not current acceptance or universal parameter advice. Use the v4 four gates for new work. Generative historical results are not evidence for traditional adjustments.
 
 ## 2026-09-30 failure that prompted v2
 

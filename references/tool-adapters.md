@@ -2,23 +2,19 @@
 
 Select only the route genuinely needed for the request. These are capability checks, not a list of required installations.
 
-## Built-in image editing (default)
+## Traditional adjustments (default)
 
-Inspect local inputs first. Use the current built-in schema and imagegen instructions; supply the original target and label optional references. Preserve original alpha unless a background change is requested. Save separately and inspect the returned file. The schema used in this release exposed a prompt, input-image references and transparency; it did **not** expose seed, denoise, protected-region masks, ControlNet strength, model checkpoint or requested pixel dimensions. Do not invent those controls. Unknown underlying version stays unknown.
+Use an available native image editor with reversible adjustment layers/masks. Read [adjustment-workflow.md](adjustment-workflow.md). Keep profile/bit depth, original geometry and source file; save the actual layered document plus a separate export. Verify that the chosen tool really returns editable layers. A flattened connector output must not be described as a PSD.
 
-One call per requested asset/variant. A failed job is an execution failure; check existing returned artifacts before repeating an uncertain call. A successful job still needs visual assessment.
+When native editing is unavailable, the packaged `apply_adjustments.py` is a local deterministic route: NumPy/Pillow, per-image curves/exposure/color operations and masks, PNG steps and a replayable recipe. See its real limits and schema in the workflow reference. Neither route needs an image-generation model.
 
-## Explicit ComfyUI / img2img / other model route
+For an Adobe connector, discover the actual schema and its required initialization/preview steps; honor its single-image versus batch routing. Supported brightness/contrast/exposure/HSL and one mask do not imply arbitrary Photoshop curves, blend modes or layered export. Stage local files only through supported upload paths. Manual masks remain the fallback for a fully traditional workflow.
 
-Discover the running server, installed compatible models/nodes and their actual schemas. Record checkpoint/version, graph, text encoder, dimensions, sampler/steps/CFG/seed and denoise only if available. Start from the original source, not an accumulated redraw. Derive edge/depth/pose guidance from the source when supported and actually supplied. Review masks: where the tool protects original pixels, verify the composite rather than merely describing it as protected.
+## Generative editing (explicit opt-in only)
 
-Hold available seed/settings constant for a paired test; vary one meaningful factor. Fixed seed alone does not ensure identical output across changed graphs/backends/versions. Pick the lowest transformation strength that still meets the requested uplift on that image; no universal denoise/CFG recommendation is bundled. A valid graph, installed model, completed execution and acceptable image are four different states.
+Only after a request for image synthesis, reconstruction, replacement content or a new image, use the available image editor and its actual instructions/schema. Inspect original targets and distinguish lighting references. Read [prompt-recipes.md](prompt-recipes.md); retain original-based bounded correction and four-gate review. Prompts do not lock geometry. Hidden seed, denoise, mask, checkpoint or output-size controls stay `not exposed`.
 
-## Explicit photo-editor / color-only route
-
-For a user-selected editor, reversible curves, tonal masks and local color adjustments can change existing pixels while retaining geometry. Check the application's supported operation first. Treat generated light and subsequent grading as separate stages. Preserve original/master/grade/export separately. Exact geometry says nothing about whether the relighting looks convincing.
-
-If the user requests only saturation correction and an actual deterministic color operation is authorized/available, avoid rerendering an already acceptable structure. Otherwise use the image-edit tool with named regional color goals and inspect redraw risk. Never map Photoshop saturation values onto a generative prompt as actual tool settings.
+For an explicitly selected ComfyUI/img2img route, verify the running service, installed models/nodes and graph. Record actual checkpoint, seed, denoise and guidance only if available. A valid graph, completed execution and successful visual result are different states. Do not invoke generation merely because adjustment results look subtler.
 
 ## Medium-specific treatment
 
@@ -32,8 +28,8 @@ If the user requests only saturation correction and an actual deterministic colo
 
 ## New images, batches and video
 
-For a new-image request, first specify/create the requested scene, then use the Normal/Deep lighting principles. Label it generation, not a faithful edit of a nonexistent original. Avoid a second generation pass by default; it increases drift and cost without guaranteed improvement.
+An explicit new-image request authorizes generation for that scene. Label it as generation; avoid an unnecessary second generative pass. Subsequent grading defaults to adjustments unless synthesis is again requested.
 
 For batches, group by medium/light conditions, make a representative sample for each group, retain a shared treatment contract and inspect individual identities. A new scene may need different light relationships; a fixed preset is not consistency proof. Sample review need not halt already authorized work, but hard failures require correction before propagating a treatment.
 
-For video, use an actually available temporal pipeline on a short representative segment before full-length processing. Inspect contiguous motion, cuts, faces/occlusions, hair/text and light/color pumping; record dropped/duplicated frames, output fps, codec and audio continuity. Do not independently edit every frame with this still-image tool and claim temporal stability. Desktop/game realtime filtering belongs to a separate runtime request.
+For video, prefer deterministic color grading with tracked/keyframed masks in a real video editor. The local helper is still-image-only. Validate a short representative segment before full-length processing; changing a mask per frame requires temporal review. An explicitly generative video job needs an actually available temporal model pipeline. Inspect contiguous motion, cuts, faces/occlusions, hair/text and light/color pumping; record dropped/duplicated frames, output fps, codec and audio continuity. Do not independently edit every frame with this still-image tool and claim temporal stability. Desktop/game realtime filtering belongs to a separate runtime request.

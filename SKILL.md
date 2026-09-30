@@ -1,51 +1,53 @@
 ---
 name: dlss5-cinematic-remaster
-description: Relight existing anime, game, CG and photographic images with Normal or Deep cinematic enhancement. Use for DLSS5-inspired image remastering with visible atmosphere, source-faithful color, protected identity/layout and inspected comparisons; this is an image-edit workflow, not a DLSS runtime.
+description: Shape cinematic light in existing illustrations, game images, CG and photos using tonal/color adjustments and local masks. Use Normal or Deep for source-preserving Photoshop-style grading; generative redraw is opt-in. This is a still-image editing workflow, not a DLSS runtime.
 ---
 
-# Cinematic relighting — v3
+# Cinematic light through adjustments — v4
 
-Create visibly stronger illumination, readable form shadows, environmental light wrap and differentiated existing materials on the **same image**. The reusable style is light coherence and dimensionality, not a fixed palette, scene, character or photorealistic makeover. Deep increases lighting amplitude, while retaining Normal's content protections. Prompts guide an editor; they do not lock pixels or reconstruct render buffers.
+AI analyzes the image and executes the edit; **the default image treatment is traditional adjustment of existing pixels**, not generative reconstruction. Build apparent light, shadow hierarchy and material separation with curves, masked dodge/burn, selective color and layer opacity. Keep the original drawing, faces, motifs and layout. The legacy DLSS5 name describes visual inspiration; this package invokes no NVIDIA model.
 
-## 1. Choose the mode first
+## 1. Choose intensity and retain the adjustment route
 
-Ask yourself **Normal or Deep?** Follow an explicit selection; otherwise infer Deep for “明显／深度／帅／氛围强／拉满”, Normal for restrained enhancement. State the choice in one sentence. Ask only when a missing preference materially changes the task. Crowded images call for tighter preservation, not automatically weaker enhancement.
+First ask yourself **Normal or Deep?** Respect an explicit choice; infer Deep for “明显／深度／帅／氛围强／拉满”, Normal for restrained improvement. State the mode briefly; ask only for a preference that materially changes the task.
 
-| Mode | Visible target | Color/content rule |
+| Mode | Intended effect | Shared protection |
 |---|---|---|
-| Normal | Clear, restrained improvement to form shading, material separation and highlight rolloff | Preserve source palette intensity, identity and layout |
-| Deep | Obvious light/shadow hierarchy, environmental bounce, deliberate existing highlights and spatial separation | Same protections; extra saturation, new effects and scene redesign require an explicit request |
+| Normal | Clear but restrained light hierarchy, form shading and material separation | Original geometry, linework, identity and source color intensity |
+| Deep | Obvious focal light, shaped shadows, coherent local light wrap and spatial atmosphere | Same protections; stronger luminance contrast, not automatic saturation, blur or redraw |
 
-## 2. Inspect and freeze the edit brief
+**Deep is intensity, never permission to generate.** “重绘／remaster／DLSS风格” alone is not opt-in to synthesis in this Skill. Use a generative editor only when the user explicitly requests generative reconstruction, new content or a new image. Missing adjustment tools are a capability gap: report it or provide an executable adjustment plan; never silently substitute a model.
 
-Inspect each current input. Label every image **edit target**, **style/light reference**, or **supporting input**. The original target controls content and color; a reference lends only explicitly chosen visual properties. Do not carry subjects, settings, colors or example-specific restrictions into another job.
+## 2. Inspect the source and design the layers
 
-Record a compact preservation map: visible subjects (including distant figures), faces/gaze/expression, pose/contacts, silhouettes, costume motifs, props, crop/layout, text/overlays and original medium. Mark invisible/unclear details unknown rather than inventing them. Identify the actual bright regions, light direction, neutral surfaces and two or three existing material differences. Read [requirements.md](references/requirements.md) only for a scope audit.
+Inspect the current target; label optional references by role. Record visible subjects (including tiny figures), faces, gestures/contacts, costume motifs, props, crop and text. References lend selected lighting ideas only; they supply no replacement face, palette or setting.
 
-Define the edit as **lighting/shading/existing material response**. Default to the source's chroma; increase impact through luminance, contact shadows and coherent highlights. Protect skin, whites and neutrals. Colored bounce stays local to surfaces reached by existing lights. Deep does not authorize orange parchment, electric-blue backgrounds, added planets, extra particles, new fog or costume redesign. Never repair saturation by adding a gray veil or flattening the requested light hierarchy.
+Identify existing lights, lit/backlit sides, neutral surfaces and readable material differences. Plan a small stack: tonal foundation → masked light/shadow shaping → optional local color balance → restrained finishing. Each layer needs purpose, location, operation, opacity and protection. Derive masks from this image, never a prior example's coordinates.
 
-## 3. Match the real tool and medium
+Default to source chroma. Protect skin, whites, contours, ornaments and lettering from clipping or obscuring shade. Create impact through luminance contrast and local adaptation. Leave saturation boosts, global fog, whole-image blur, invented texture and artificial sharpness off. Optional source-derived glow stays on a separate masked layer with the sharp original underneath; inspect spill before retaining it.
 
-Read [prompt-recipes.md](references/prompt-recipes.md); fill only current-image observations and append one mode. Adapt to illustration, CG or photography without changing medium. For strict pixel/geometry preservation, say whether the selected tool actually supports protected masks or reversible adjustments. A prompt-based full-frame edit remains approximate.
+## 3. Execute with a real adjustment tool
 
-Use the available built-in image editor by default, respecting its imagegen instructions and preserving transparency. Read [tool-adapters.md](references/tool-adapters.md) for an explicitly selected external/controlled pipeline, batch, video or new-image request. Check live schemas before setting knobs; unavailable seed, denoise, mask or conditioning controls stay `not exposed`. Do not switch services or install models merely to conceal a limitation.
+Read [adjustment-workflow.md](references/adjustment-workflow.md) for Photoshop guidance and the local helper. Prefer reversible adjustment layers/masks in an available editor. Otherwise use [apply_adjustments.py](scripts/apply_adjustments.py) with a per-image JSON recipe; it returns a result, masks, step PNGs and provenance. It performs deterministic tonal/color calculations without synthesis, resampling, inpainting or image blur; it writes no PSD and does not exactly reproduce Photoshop algorithms.
 
-## 4. Generate, inspect, correct
+Retain the original, actual layer/recipe parameters and separate export. Check profile, bit depth and alpha; keep unsupported HDR/16-bit masters in a suitable native editor. Record only exposed controls. Read [tool-adapters.md](references/tool-adapters.md) for another tool, batch, video or explicit generative work. Optional detection/segmentation is analysis, not synthesis; manual masks support a fully traditional pipeline.
 
-Generate one candidate non-destructively. Save the exact prompt, ordered input roles, available settings, tool/model identity (unknown if unexposed), returned file and lineage to the original.
+## 4. Inspect and correct the stack
 
-Read [evaluation.md](references/evaluation.md). Inspect full images at matched display scale **and** native-size detail views. Apply four independent gates: **content/identity**, **visible lighting uplift**, **source-faithful color**, **clarity/coherence**. Inspect every visible face, hand/held prop, emblem and small figure; identify limitations at the delivered resolution. A flattering face, stronger color or center wipe alone cannot pass the result.
+Apply [evaluation.md](references/evaluation.md)'s four gates: **content/identity, visible lighting uplift, source-faithful color, clarity/coherence**. View full images at matched size plus native detail crops. Verify no geometric transform or synthesis; also check that shade has not hidden expressions, lines or tiny figures. An unchanged contour can still become unreadable.
 
-Allow at most two targeted corrections after the initial candidate. Return to the original; change one diagnosed axis. Weak effect: strengthen one existing lit/shadow relationship. Drift: narrow the operation or use a supported protected-region workflow. Excess color: name the overcolored regions while preserving shading. Smear: reduce reconstruction demand; sharpening does not recover lost linework. Do not chain generated frames, keep appending adjectives or retry indefinitely.
+Weak effect: strengthen one existing lit/shadow relationship. Overcolored: reduce the responsible color layer. Muddy: reduce broad shade/veil. Modify the stored stack and recompute from the original, rather than repeatedly grading a flattened export. Initial candidate plus at most two targeted corrections; retain failed/qualified previews without silently switching routes.
 
-## 5. Deliver verifiable results
+## 5. Deliver actual output and editable evidence
 
-Deliver the actual output, source-left/result-right complete comparison and center wipe when useful/requested. Use [scripts/review_artifact.py](scripts/review_artifact.py) for repeatable comparison files and metadata if Python + FFmpeg/ffprobe are available; it formats evidence, **never decides aesthetic success**. See [evaluation.md](references/evaluation.md) for its invocation. Preserve the master; label resized comparisons as previews.
+Deliver the result and its actual editable form: native layers if available, otherwise JSON + masks + step exports. Label the format honestly; PNG steps are not Photoshop adjustment layers. Use [review_artifact.py](scripts/review_artifact.py) for a full source-left/result-right pair and optional center wipe. These previews supplement master/detail inspection.
 
-Report `passed-on-this-image`, `qualified-preview`, `failed` or `unassessed`, with concrete changes and remaining issues. A critical content failure cannot win; if no candidate meets the brief, report failure with a labeled preview rather than claiming completion. User approval is distinct from assistant assessment. File/schema validation is distinct from visual quality; single frames do not prove temporal stability.
+Report `passed-on-this-image`, `qualified-preview`, `failed` or `unassessed`. Deterministic computation means reproducibility for identical inputs, recipe and dependencies; it does not prove universal aesthetics or physically accurate 3D relighting. User approval differs from assistant assessment.
 
-## Optional references
+## Conditional references
 
-- [Skill audit](references/skill-audit.md): dated review scope, adopted/rejected patterns and primary sources; read for methodology/research, not every edit.
-- [Validation record](references/validation-v3.md): actual sample observations, failures and unknowns; read before making reliability claims.
-- [Runtime notes](references/runtime-controls.md): separate historical community-app notes, only for an explicit runtime request. This package contains no DLSS binary/model and does not process a desktop or game in real time.
+- [Requirements](references/requirements.md): complete brief and current method contract.
+- [v4 validation](references/validation-v4.md): executed adjustment examples and limitations.
+- [Audit](references/skill-audit.md): source review and adopted practices.
+- [Generative recipes](references/prompt-recipes.md): legacy optional route, **only after explicit opt-in**; [v3 tests](references/validation-v3.md) are historical generative evidence.
+- [Runtime notes](references/runtime-controls.md): historical community-app notes for explicit runtime requests; this package provides no real-time desktop/game processing.

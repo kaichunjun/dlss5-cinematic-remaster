@@ -1,5 +1,6 @@
 # v3 实测、验证与限制 — 2026-09-30
 
+> Historical generative route. v4 defaults to traditional pixel adjustments; read this file only for explicitly authorized generation or historical evidence. These prompts/results do not validate the v4 adjustment pipeline.
 ## 本版实际生成
 
 工具：内置 `image_gen` 编辑；每次只使用该图原件，无额外风格参考。实际参数仅含提示词、输入图和 `transparent_background=false`。底层模型版本、seed、denoise、掩膜及结构条件未暴露。此次是完整提示配方更新，不能归因到某一个词，也没有做确定性或盲评实验。
