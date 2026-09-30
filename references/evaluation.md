@@ -1,36 +1,38 @@
-# Evaluation and test record
+# v2 evaluation and evidence
 
-## Visual QA rubric
+## Two mandatory gates
 
-Score each core dimension from 0 to 2. A reusable result needs at least 9/12 and no zero in structure preservation.
+**Gate A — fidelity:** inspect full images at matched scale and face/hand/costume/background crops at 100%. Reject changed expressions, defining facial proportions, gestures, clothing motifs, object/subject count, crop, camera, layout or scene decoration. Minor raster variations are expected in generative output; describe them rather than claiming exact pixels. Geometry preservation is an instruction plus visual check, not a guaranteed tool capability.
 
-| Dimension | 0 | 1 | 2 |
-|---|---|---|---|
-| Identity and face | replaced or distorted | small drift | clearly same identity and proportions |
-| Geometry and composition | pose/layout/object changes | minor movement | locked |
-| Material separation | universal gloss or flatness | partial differentiation | distinct plausible skin/hair/cloth/leather/metal response |
-| Light transport | incoherent or merely brighter | some depth improvement | coherent contact shadows, bounce, transmission and reflections |
-| Art-direction fidelity | different genre/person | recognizable with drift | same anime/game identity |
-| Artifact control | severe wax, halos or texture hallucination | minor artifacts | clean and restrained |
+**Gate B — visible uplift:** identify at least two observable improvements to existing illumination/material response. Deep must show a meaningful lit/shadow hierarchy or environmental light relationship at fit-to-screen size. A uniform exposure/saturation change, extra stars/fireworks, or newly invented objects does not count as success. Reject smear, clipped bright cores, illegible material boundaries, a gray veil and halo sharpening.
 
-For Deep, also score these dimensions from 0 to 2. A passing Deep result needs at least 4/6 here and must pass the core rubric.
+A candidate passes only when both gates pass. Use `passed-on-this-image`, `failed-fidelity`, `failed-uplift`, or `unassessed`; never trade one gate for the other. Record subjective observations and remaining uncertainty separately from objective file metadata.
 
-| Deep dimension | 0 | 1 | 2 |
-|---|---|---|---|
-| Atmospheric depth | flat or global fog | some layering | clear foreground, subject and background atmosphere |
-| Hero lighting and color | random or uniformly boosted | stronger but unfocused | coherent key/fill/rim rhythm and controlled color separation |
-| Readability under intensity | smeared or bloom-erased | minor loss | face, hair, hands, costume and edges stay readable |
+## 2026-09-30 failure that prompted v2
 
-## Visual comparison gallery
+Crowded Genshin ensemble: the earlier restrained pass was reported by the user as too similar. A maximum-strength retry added celestial bodies, rebuilt background fireworks/nebulae and altered details. It is a failed fidelity case even though the atmosphere was stronger. These are observations of this editor/setup, not proof that every v1 invocation fails.
 
-The public gallery presents the user-provided game frames as matched center-wipe comparisons. They define reusable qualities rather than a single preset scene:
+## Validation status
 
-- cool material depth without waxy smoothing;
-- controlled bright cores and readable highlight gradients;
-- atmospheric glow with protected faces, hands, clothing and foreground edges;
-- strong hero lighting, silhouette separation and environmental scale.
+v2 workflow/document changes are not a stability benchmark. Record fresh tests below before advertising reliability. Repeated varied-image passes are needed; retain failures in the count. User approval is separate from the assistant's visual assessment. Video stability is untested until contiguous frames are inspected for flicker/identity drift.
 
-Every new input still requires a fresh inventory of its visible subjects, materials, palette, light sources, composition and protected details.
+
+## v2 practical checks — 2026-09-30
+
+Tool: built-in `image_gen` edit with the supplied original as reference. Its underlying model version, seed and denoise were not exposed; repeatability here is an observed result, not deterministic reproduction. No masks or conditioning buffers were supplied.
+
+| Input / mode | Attempts | Visible uplift | Structure observation | Status |
+|---|---:|---|---|---|
+| Eight-character ensemble plus two distant figures / Deep | 2 independent calls, identical prompt | Strong gold illumination on existing parchment/characters, cooler blue shadows and existing music highlights | Same subject count, poses and overall layout; no new planets or redesigned cosmic setting. Fine costume markings/face lines show small redraw differences at inspection scale. | Qualified visual result; strict exact-detail fidelity remains unproven |
+| Orange-gold graphic poster / Normal | 1 | Deeper existing skirt folds, clearer hair shading and metal highlights | Main figure/pose and surrounding props retained; fine line and texture variations remain. | Qualified visual result; no exact-pixel preservation claim |
+
+This is **three executions on two images**, not three independent image cases or a broad stability study. No catastrophic scene redesign was observed in these three outputs. This limited comparison suggests v2 reduces the observed world-building failure; it does not establish a universal pass rate. Small line changes are retained as an issue rather than hidden by a total score. Neither source has received fresh user approval. Portrait fidelity and temporal video stability are untested in v2.
+
+Exact prompts: `references/v2-test-prompts.json`. Gallery previews: `assets/v2-ensemble-center-wipe.png` and `assets/v2-poster-center-wipe.png`. Wipes aid presentation; acceptance used full comparisons plus upper/lower face crops.
+
+## Historical v1 notes — not v2 validation
+
+The following notes are historical observations from the previous workflow. Their positive wording and gallery images do not establish v2 reliability or a measured success rate.
 
 ## Controlled Normal versus Deep test — 2026-09-21
 
