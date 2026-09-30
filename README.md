@@ -19,7 +19,7 @@ Traditional adjustment of the same rain-night source. **Source left, Deep result
 
 ![Deep traditional-adjustment full pair](assets/v4-portrait-deep-side-by-side.png)
 
-[Center wipe](assets/v4-portrait-deep-center-wipe.png) · [Native result](assets/v4-portrait-deep-result.png) · [Normal full pair](assets/v4-portrait-normal-side-by-side.png)
+[Original source](assets/v4-portrait-source.png) · [Center wipe](assets/v4-portrait-deep-center-wipe.png) · [Native result](assets/v4-portrait-deep-result.png) · [Normal full pair](assets/v4-portrait-normal-side-by-side.png)
 
 One source, two mode variants and one Deep replay. Fourteen computational checks passed; assistant visual review passed on this image, user aesthetic approval is pending. No universal success rate is claimed. [v4 validation](references/validation-v4.md) distinguishes computation, visual judgment and limits. [v3 tests](references/validation-v3.md) are historical generative evidence, not validation of this default route.
 
@@ -62,3 +62,9 @@ The assistant designs the recipe for that input. The [portrait recipe](reference
 - [skill-audit.md](references/skill-audit.md): previous source review and this method revision. [Legacy prompts](references/prompt-recipes.md) apply only to explicit generation.
 
 This shapes apparent light through existing pixel relationships; it does not reconstruct missing texture or true 3D light transport. Masks and strength require image-specific judgment. Own text/scripts: [MIT License](LICENSE); underlying sample/character rights: [NOTICE.md](NOTICE.md).
+
+Replay the bundled Deep example (source and recipe included):
+
+```bash
+python scripts/apply_adjustments.py --source assets/v4-portrait-source.png --recipe references/v4-portrait-deep.json --output-dir portrait-deep-demo
+```

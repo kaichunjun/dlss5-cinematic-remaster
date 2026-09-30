@@ -21,7 +21,7 @@
 
 ![Deep 纯调整完整左右对比](assets/v4-portrait-deep-side-by-side.png)
 
-[中线划像对比](assets/v4-portrait-deep-center-wipe.png) · [原尺寸结果](assets/v4-portrait-deep-result.png) · [Normal 完整对比](assets/v4-portrait-normal-side-by-side.png)
+[原图](assets/v4-portrait-source.png) · [中线划像对比](assets/v4-portrait-deep-center-wipe.png) · [原尺寸结果](assets/v4-portrait-deep-result.png) · [Normal 完整对比](assets/v4-portrait-normal-side-by-side.png)
 
 新流程测试一个输入、两档和一次深度档复算，14 项计算检查通过；助手在该图上视觉验收通过，用户审美确认待定。没有宣称全题材稳定成功率。旧版生成对比见 [v3 历史记录](references/validation-v3.md)，它们无法证明新流程的效果。详见 [v4 验证](references/validation-v4.md)。
 
@@ -66,3 +66,9 @@ AI 按当前图片写 `your-image.json`；[示例配方](references/v4-portrait-
 - [skill-audit.md](references/skill-audit.md)：此前 Skill 调研与本轮方法修订；历史 [prompt-recipes.md](references/prompt-recipes.md)只给显式生成请求使用。
 
 光感由现有像素的明暗／色彩关系塑造；真实三维光照与缺失纹理没有因此重建。蒙版与强度仍需逐图设计。自写文档与脚本使用 [MIT License](LICENSE)，第三方示例权利说明见 [NOTICE.md](NOTICE.md)。
+
+复算仓库中的深度档示例（已包含原图与配方）：
+
+```bash
+python scripts/apply_adjustments.py --source assets/v4-portrait-source.png --recipe references/v4-portrait-deep.json --output-dir portrait-deep-demo
+```
