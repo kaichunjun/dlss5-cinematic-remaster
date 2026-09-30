@@ -1,4 +1,4 @@
 interface:
   display_name: "DLSS5 风格电影光影重绘"
-  short_description: "双档光影增强，结构与效果分别验收"
-  default_prompt: "使用 $dlss5-cinematic-remaster，先判断正常档或深度档，只增强当前原图的光影和材质响应，逐图检查人物与构图以及效果差异；失败时从原图修正并明确标注结果。"
+  short_description: "双档光影增强，保真、颜色与清晰度验收"
+  default_prompt: "使用 $dlss5-cinematic-remaster，先判断正常档或深度档，逐图分析原件，只增强已有光影和材质响应，保留角色构图及原图色彩强度，分别检查保真、效果、颜色和清晰度；从原图有限修正，提供对比并明确结果状态。"

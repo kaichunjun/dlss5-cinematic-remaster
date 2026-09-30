@@ -1,12 +1,47 @@
-# v2 evaluation and evidence
+# Visual assessment and artifact review — v3
 
-## Two mandatory gates
+## Four independent gates
 
-**Gate A — fidelity:** inspect full images at matched scale and face/hand/costume/background crops at 100%. Reject changed expressions, defining facial proportions, gestures, clothing motifs, object/subject count, crop, camera, layout or scene decoration. Minor raster variations are expected in generative output; describe them rather than claiming exact pixels. Geometry preservation is an instruction plus visual check, not a guaranteed tool capability.
+| Gate | Pass evidence | Fail / concern examples |
+|---|---|---|
+| A — content and identity | Same visible subjects/counts, face design/gaze/expression, gestures/contacts, costume motifs, objects, crop/layout | Missing tiny figure, changed grip or expression, new decoration, redraw of a defining symbol |
+| B — visible lighting uplift | At least two named changes in existing lighting/material response; Deep clearly stronger at fit-to-screen size | Nearly identical result, uniform exposure change, global vividness, new scenery mistaken for enhancement |
+| C — color restraint | Source-faithful skin/whites/neutrals/unlit background; colored spill local and source-supported | Orange neutral material, neon blue sky, broad complementary wash, gray blanket used to hide oversaturation |
+| D — clarity and coherence | Readable hair locks/ornaments/edges, clean gradient highlights, plausible shared light direction | Painted smear, eye/hand blur, clipped cores, black crush, wet-looking matte surfaces, sharpening halos |
 
-**Gate B — visible uplift:** identify at least two observable improvements to existing illumination/material response. Deep must show a meaningful lit/shadow hierarchy or environmental light relationship at fit-to-screen size. A uniform exposure/saturation change, extra stars/fireworks, or newly invented objects does not count as success. Reject smear, clipped bright cores, illegible material boundaries, a gray veil and halo sharpening.
+First inspect full source and output at the same display scale. Then inspect every visible face, hands/props, motifs and tiny subjects in native-resolution crops. Do not claim a crop was inspected at 100% when it was upscaled or shown as a small thumbnail. Different output dimensions mean different detail capacity; state this limitation. Text and linework can drift even with perfect large-scale layout.
 
-A candidate passes only when both gates pass. Use `passed-on-this-image`, `failed-fidelity`, `failed-uplift`, or `unassessed`; never trade one gate for the other. Record subjective observations and remaining uncertainty separately from objective file metadata.
+A center wipe is a presentation aid: it hides half of each image and cannot establish full-image fidelity. Use a full pair and complete source/output inspection. For multi-reference input, inspect each reference against its declared role; a prettier face is not proof of preserved identity.
+
+## Outcomes
+
+- `passed-on-this-image`: all four gates met at the delivered resolution; distinguish assistant assessment from user approval. This does not mean exact-pixel identity.
+- `qualified-preview`: visible uplift and preserved broad layout, but noncritical detail/color concerns remain. Show the concerns; never call this fully approved.
+- `failed`: a critical gate breaks or the requested uplift is absent after the bounded attempts. The best failed image may be shown only as a labeled failed preview.
+- `unassessed`: output or necessary comparisons were not actually reviewed.
+
+A gate can be unknown when the source is unclear. Do not convert unknown to pass or calculate precise identity percentages. Keep failed trials, user feedback and evaluation revisions. At most initial + two targeted corrections per job; always retain the original target. Stable-across-images claims need an explicitly described varied sample, repeats, failure counts and known model/settings. There is no universal minimum sample size or guaranteed success rate here.
+
+## Repeatable evidence helper
+
+Requires Python 3, FFmpeg and ffprobe available on PATH. It does not generate/edit the artwork, alter source masters, apply color correction, or decide aesthetics. It creates preview comparisons, optional native crops and a metadata record. Use a **new output directory** for each review.
+
+```bash
+python3 scripts/review_artifact.py \
+  --source /absolute/path/original.png \
+  --candidate /absolute/path/result.png \
+  --output-dir /absolute/path/review-new \
+  --run-card /absolute/path/run-card.json \
+  --roi face=0.30,0.05,0.25,0.30
+```
+
+ROI coordinates are fractions of the whole frame: x,y,width,height. The named source and candidate crop files retain native pixels; the main comparison previews use downscaling/fit only, without stretching unequal aspect ratios. Aspect differences over the helper's 1% comparison tolerance stop generation of a misleading wipe; this is an engineering guard, not an aesthetic similarity threshold. No face detection or automatic fidelity score is claimed.
+
+The report records sizes, hashes, output files, preview scaling, tool versions and optional provided run-card data. Its `visual_review` is deliberately `unassessed`; inspection notes go in a separate assessment record. A successful script/Skill validator proves formatting/execution, not successful remastering. See [validation-v3.md](validation-v3.md) for current tests.
+
+## Historical evidence follows
+
+Older wording below is retained as dated observation, not current acceptance or universal parameter advice. Use the v3 four gates for new work.
 
 ## 2026-09-30 failure that prompted v2
 
@@ -52,7 +87,7 @@ The following notes are historical observations from the previous workflow. Thei
 
 ### Status
 
-Both modes are `tested-on-this-setup`. Four additional pairs in `assets/comparison-02-cosmic.jpg` through `assets/comparison-05-hero-tree.jpg` test portability across different colors, compositions, materials and lighting problems. Results can still vary by model, source image and editor settings.
+Both modes are `tested-on-this-setup`. Other retained v1 examples are historical visual references across different scenes; their exact prompt provenance and acceptance evidence are incomplete. One former cosmic comparison is absent from the current checkout. Results can still vary by model, source image and editor settings.
 
 ## Failure diagnosis
 
@@ -71,3 +106,7 @@ Both modes are `tested-on-this-setup`. Four additional pairs in `assets/comparis
 - **Observed weakness:** the veil lowers local contrast, merges some hair-lock and material boundaries, softens crown and crystal edges, and gives the frame a slightly washed, painted surface.
 - **Calibration target:** retain the warm/cool light transport and atmospheric cohesion, then restore mid-frequency separation without clarity halos, black crush, aggressive sharpening, or added texture.
 - **Evidence boundary:** the image is a user-labeled runtime result. A processing log and exact source/output frame pair were not supplied with this reference, so use it for visual-direction calibration rather than pixel-level runtime validation.
+
+## User feedback — 2026-09-30 color correction
+
+The user reported the first v2 ensemble as too saturated. Earlier direction consistency remains an observation, but these samples are not user-approved aesthetic targets. Default recipes now preserve source chroma in both modes and strengthen luminance/shading rather than saturation. v3 adds a fresh original-based corrected preview; see [validation-v3.md](validation-v3.md). It remains pending user assessment.

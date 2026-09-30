@@ -1,0 +1,355 @@
+{
+  "audit_date": "2026-09-30",
+  "scope": "15 local related Skill entrypoints; 22 public entrypoints in 7 repositories, including 3D/UI triage; overlap is not counted as independent evidence. Conditional references selectively consulted. Not an exhaustive inventory of all internet skills.",
+  "local": [
+    {
+      "name": "imagegen",
+      "bytes": 19201,
+      "sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "comfyui-prompt-lab",
+      "bytes": 4377,
+      "sha256": "fe4359095be5a332d6351630ab7af68890036b5b6ee45add386245aa6ea64a73",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "comfyui-local-operator",
+      "bytes": 5075,
+      "sha256": "56095654d8e7e044dff1b94b92d7eebd5a8a48709765cebc458f0368902638c8",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "image-enhancer",
+      "bytes": 2540,
+      "sha256": "57b003b9cd0c3e42861194c37e2df061061f3e1e4b03e776fa33bf27b045e40c",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "canvas-design",
+      "bytes": 11939,
+      "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "theme-factory",
+      "bytes": 3036,
+      "sha256": "bd9da4c994dab11e75a7095aafc250fb2dda8a66afc28a8a2c9cd1fa234b494b",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "brand-guidelines",
+      "bytes": 2195,
+      "sha256": "619d44a03b6fdc39a8fd5f9e153f03c41b44277501254315643824f924229d92",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "fal-ai-media",
+      "bytes": 6933,
+      "sha256": "5aa3ff04a2f7ef2fcdb5735cf8597abaa2b0c6ad3060c0cee45c665a9af5b2f1",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "prompt-architect",
+      "bytes": 17464,
+      "sha256": "03d1f8a5d0b5c68c3316ee1ae6ab74d80bddf6991c4c664d094e1b1db6a33ab0",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "prompt-optimizer",
+      "bytes": 16228,
+      "sha256": "645df8819e848ddc131b7c61e87a99bdab15f2098a83a6dcabf44e155846e293",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "adobe-retouch-portraits",
+      "bytes": 41269,
+      "sha256": "3b3d098547f0e8c6b885dda0d32acaf1a9450660c6c803c2950b02a2acd30a5a",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "adobe-batch-edit-photos",
+      "bytes": 40615,
+      "sha256": "062112a424340bef585f0c3aed9a484721ff4b200044883dd0bdb1dd7599642c",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "adobe-create-social-variations",
+      "bytes": 30915,
+      "sha256": "f2404147b9a05f7d759d8a7c0c51af06f9841ad55025395a887d27429be6d63d",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "adobe-create-mockups",
+      "bytes": 21297,
+      "sha256": "65a8fd58c8495210296eb1da51d0846d1ad9a7cf80a286ea4220874c0f4e56f2",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    },
+    {
+      "name": "adobe-design-from-template",
+      "bytes": 16622,
+      "sha256": "11d9eaed34c526b350185c298d8dd3c764d3cebeb111905f59230d3b3c291207",
+      "review_scope": "entrypoint and relevant workflow sections; conditional references selectively consulted"
+    }
+  ],
+  "public": [
+    {
+      "repository": "openai/skills",
+      "entries": [
+        {
+          "repository": "openai/skills",
+          "path": "skills/.system/imagegen/SKILL.md",
+          "url": "https://github.com/openai/skills/blob/main/skills/.system/imagegen/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/openai/skills/main/skills/.system/imagegen/SKILL.md",
+          "tree_sha": "49f948faa9258a0c61caceaf225e179651397431",
+          "sha256": "826d05b806d51fa81cd650f1c0854b0a1f7fbccd1b152c588ded1797a2e7218f",
+          "bytes": 16204,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 44,
+      "tree_truncated": false
+    },
+    {
+      "repository": "anthropics/skills",
+      "entries": [
+        {
+          "repository": "anthropics/skills",
+          "path": "skills/brand-guidelines/SKILL.md",
+          "url": "https://github.com/anthropics/skills/blob/main/skills/brand-guidelines/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/brand-guidelines/SKILL.md",
+          "tree_sha": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+          "sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+          "bytes": 2235,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "anthropics/skills",
+          "path": "skills/canvas-design/SKILL.md",
+          "url": "https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/canvas-design/SKILL.md",
+          "tree_sha": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+          "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+          "bytes": 11939,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "anthropics/skills",
+          "path": "skills/theme-factory/SKILL.md",
+          "url": "https://github.com/anthropics/skills/blob/main/skills/theme-factory/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/theme-factory/SKILL.md",
+          "tree_sha": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+          "sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
+          "bytes": 3124,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 20,
+      "tree_truncated": false
+    },
+    {
+      "repository": "Sancerio/codex-photo-editing-skills",
+      "entries": [
+        {
+          "repository": "Sancerio/codex-photo-editing-skills",
+          "path": "skills/conservative-photo-upscaling/SKILL.md",
+          "url": "https://github.com/Sancerio/codex-photo-editing-skills/blob/main/skills/conservative-photo-upscaling/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/Sancerio/codex-photo-editing-skills/main/skills/conservative-photo-upscaling/SKILL.md",
+          "tree_sha": "be3bc673ea4da399bf066b9da2329877923d8f10",
+          "sha256": "13a852a74efbadbd84aa70cb0066196771a6e463ba9c0073f76d27548ccf5738",
+          "bytes": 2073,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "Sancerio/codex-photo-editing-skills",
+          "path": "skills/identity-safe-photo-editing/SKILL.md",
+          "url": "https://github.com/Sancerio/codex-photo-editing-skills/blob/main/skills/identity-safe-photo-editing/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/Sancerio/codex-photo-editing-skills/main/skills/identity-safe-photo-editing/SKILL.md",
+          "tree_sha": "be3bc673ea4da399bf066b9da2329877923d8f10",
+          "sha256": "cd102d5b7e9522fca7195aaa2bd772b016bf3e97fdbf868c9276fb00190ecb5e",
+          "bytes": 1834,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "Sancerio/codex-photo-editing-skills",
+          "path": "skills/identity-safe-photo-retouching/SKILL.md",
+          "url": "https://github.com/Sancerio/codex-photo-editing-skills/blob/main/skills/identity-safe-photo-retouching/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/Sancerio/codex-photo-editing-skills/main/skills/identity-safe-photo-retouching/SKILL.md",
+          "tree_sha": "be3bc673ea4da399bf066b9da2329877923d8f10",
+          "sha256": "d2f26eb39513aac5f65ba4d8f22fcbbd666cd6e8d778ea209f196c40217cb3a1",
+          "bytes": 4162,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "Sancerio/codex-photo-editing-skills",
+          "path": "skills/photo-delivery-export/SKILL.md",
+          "url": "https://github.com/Sancerio/codex-photo-editing-skills/blob/main/skills/photo-delivery-export/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/Sancerio/codex-photo-editing-skills/main/skills/photo-delivery-export/SKILL.md",
+          "tree_sha": "be3bc673ea4da399bf066b9da2329877923d8f10",
+          "sha256": "5060fd347917016f2f9d6118a628951038c8a9db2561520407e6f01831826af3",
+          "bytes": 2630,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 4,
+      "tree_truncated": false
+    },
+    {
+      "repository": "fal-ai-community/skills",
+      "entries": [
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-workflow/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-workflow/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/fal-ai-community/skills/main/skills/fal-workflow/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "a079894cc2c31b161cb4eca6f9396d84f40e45608607107085a57ac2ea9eb5f4",
+          "bytes": 12951,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-regenerate-3d/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-regenerate-3d/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "e9716e331cc0d811f3ff44d3d4ccfbb87c20fca61ad08f0b59d567c2c15853df",
+          "bytes": 6282,
+          "review_scope": "entrypoint triage: out of remaster scope"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-prompting/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-prompting/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "e9e88c6b5ccac9367353ab9a829ce764c7a253ae3b93f1306bb247eabafde1d7",
+          "bytes": 2758,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/model-routing/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/model-routing/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "6d3f6b555d37e758aec32ab66e7ce549aadfb8613cf030baee968705f277fbe0",
+          "bytes": 5840,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/genmedia/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/genmedia/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "2e982b5d6a169761a1b260aacce60cce2a47111591eab14d231fa6351f7d96a9",
+          "bytes": 5762,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/genmedia-workflow/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/genmedia-workflow/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "450e1d49500917ee199d981b2e8e45cc9a8d7caf408f6c7eed5dfbd065e16195",
+          "bytes": 5392,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/cinematography/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/cinematography/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "8d23b4836a7621e1c9715def480d95e3b4b2135bfd7995e2800013949fc8eba7",
+          "bytes": 4925,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/character-design/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/character-design/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "1f62641d84b3dc0f2c0e13663afbb71cd9682483e82b920cc53450713c5f5d57",
+          "bytes": 5147,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-models-catalog/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-models-catalog/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "13582586677b5afff1beaa7a3ac2306c59a3ab7ca6b7b2be0492a9af21b46de1",
+          "bytes": 2866,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-redesign/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-redesign/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "71a23a7384ecaa2db2b8ffccd39d7c936563de6aebc243cc2a52c5edca512afd",
+          "bytes": 5781,
+          "review_scope": "entrypoint/workflow review"
+        },
+        {
+          "repository": "fal-ai-community/skills",
+          "path": "skills/fal-recipes/SKILL.md",
+          "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-recipes/SKILL.md",
+          "tree_sha": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+          "sha256": "2c6a99b5cf427b89436f65836f00e8ac25d8dabf0871127e5ee196e5faf4c98a",
+          "bytes": 4534,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 17,
+      "tree_truncated": false
+    },
+    {
+      "repository": "dancolta/gen-images-skill",
+      "entries": [
+        {
+          "repository": "dancolta/gen-images-skill",
+          "path": "SKILL.md",
+          "url": "https://github.com/dancolta/gen-images-skill/blob/main/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/dancolta/gen-images-skill/main/SKILL.md",
+          "tree_sha": "0d44114746858deed8110b440a9d5740d21fa1a2",
+          "sha256": "198d61ba7ba4b117f54b86e687e172c74e284c545dd24ec992608d94ba53ec92",
+          "bytes": 7541,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 1,
+      "tree_truncated": false
+    },
+    {
+      "repository": "teskor-hub/chatgpt-imagegen-skill",
+      "entries": [
+        {
+          "repository": "teskor-hub/chatgpt-imagegen-skill",
+          "path": "SKILL.md",
+          "url": "https://github.com/teskor-hub/chatgpt-imagegen-skill/blob/main/SKILL.md",
+          "tree_sha": "21b4f64c0f970faf6f10a9b27a6cd01b4e331e5b",
+          "sha256": "8724c2556e93198ca5a0530e94676194f3b532763a3beaa2aa4a8298f3feee50",
+          "bytes": 18561,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 1,
+      "tree_truncated": false
+    },
+    {
+      "repository": "dnesdan/Skills",
+      "entries": [
+        {
+          "repository": "dnesdan/Skills",
+          "path": "prototype-ui-with-imagegen/SKILL.md",
+          "url": "https://github.com/dnesdan/Skills/blob/main/prototype-ui-with-imagegen/SKILL.md",
+          "tree_sha": "e4766663872e1fc68b5a015af258f555df1ae1ad",
+          "sha256": "06c988082ed15f1b79bd406e569174eee70e0ad4bcf69af1f820af45f6cd8168",
+          "bytes": 18846,
+          "review_scope": "entrypoint/workflow review"
+        }
+      ],
+      "all_skill_count": 16,
+      "tree_truncated": false
+    }
+  ]
+}

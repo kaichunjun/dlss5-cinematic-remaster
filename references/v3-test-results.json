@@ -1,0 +1,120 @@
+{
+  "generation_tool": "built-in image_gen",
+  "underlying_model_version": "not exposed",
+  "user_approval": "pending",
+  "reviewer": "primary assistant; no independent or blinded reviewer",
+  "trials": [
+    {
+      "id": "v3-ensemble-deep",
+      "outcome": "qualified-preview",
+      "gates": {
+        "A": "broad composition/count retained; fine ornament/line redraw concern",
+        "B": "visible uplift: existing parchment edge light/contact shadow, cloth shading and material highlights",
+        "C": "less orange/cobalt than v2; some stronger localized color/glow persists; user taste assessment pending",
+        "D": "no broad smear observed; output has fewer source pixels, fine details less assessable"
+      },
+      "observations": [
+        "Eight principal and two tiny distant subjects retained.",
+        "Fine fabric/ornament strokes are not pixel-identical.",
+        "No added planets/new setting observed.",
+        "Existing music highlights remain somewhat brighter."
+      ],
+      "source": {
+        "sha256": "833ef749c56b35c4a91681ad3818bd397d4fb79e7faf5f9d7f293de3d7b34a4d",
+        "width": 2560,
+        "height": 1440,
+        "codec_name": "mjpeg",
+        "pix_fmt": "yuvj420p",
+        "color_space": "bt470bg",
+        "color_transfer": "unknown",
+        "color_primaries": "unknown"
+      },
+      "candidate": {
+        "sha256": "4b9d87b7071265e82728f5b58324c863b50ac349494667bf36401140bb1c46ae",
+        "width": 1672,
+        "height": 941,
+        "codec_name": "png",
+        "pix_fmt": "rgb24",
+        "color_space": "gbr",
+        "color_transfer": "unknown",
+        "color_primaries": "unknown"
+      },
+      "comparison_files": [
+        "assets/v3-ensemble-side-by-side.png",
+        "assets/v3-ensemble-center-wipe.png"
+      ]
+    },
+    {
+      "id": "v3-portrait-normal",
+      "outcome": "passed-on-this-image",
+      "gates": {
+        "A": "no critical face/expression/grip/layout change observed; minute line variations remain",
+        "B": "lantern-side hair/cloth light and metal highlights visibly stronger",
+        "C": "warm light remains local, navy clothing/unlit background remain broadly source-faithful",
+        "D": "face, grip and emblem readable; no broad smear observed"
+      },
+      "observations": [
+        "Face/gaze/slightly parted mouth, shoulder emblem and sword grip compared in native crops.",
+        "Right-side rim and contact shading strengthened without new objects.",
+        "This is an anime portrait, not a real-person-photo validation case."
+      ],
+      "source": {
+        "sha256": "37ce0b800ddc784f11137d2ba3295166bc4c8c9f35349f7d9fabdcc251b081b4",
+        "width": 1672,
+        "height": 941,
+        "codec_name": "png",
+        "pix_fmt": "rgb24",
+        "color_space": "gbr",
+        "color_transfer": "unknown",
+        "color_primaries": "unknown"
+      },
+      "candidate": {
+        "sha256": "b7dd541643a42cb27c511ad885d92e637debea7dc8ad7ee14bf94e56e369e395",
+        "width": 1672,
+        "height": 941,
+        "codec_name": "png",
+        "pix_fmt": "rgb24",
+        "color_space": "gbr",
+        "color_transfer": "unknown",
+        "color_primaries": "unknown"
+      },
+      "comparison_files": [
+        "assets/v3-portrait-side-by-side.png",
+        "assets/v3-portrait-center-wipe.png"
+      ]
+    }
+  ],
+  "helper_checks": [
+    {
+      "case": "refuse-existing-review",
+      "exit_code": 1,
+      "message": "Review failed: Output directory already exists. Choose a new directory; existing reviews are preserved."
+    },
+    {
+      "case": "reject-mismatched-aspect",
+      "exit_code": 1,
+      "message": "Review failed: Aspect ratio differs by 15.49%; review framing before making a wipe."
+    },
+    {
+      "case": "reject-invalid-roi",
+      "exit_code": 2,
+      "message": "usage: review_artifact.py [-h] --source SOURCE --candidate CANDIDATE\n                          --output-dir OUTPUT_DIR\n                          [--preview-width PREVIEW_WIDTH] [--roi ROI]\n                          [--run-card RUN_CARD]\nreview_artifact.py: error: argument --roi: ROI must fit inside the image in fractions 0..1."
+    },
+    {
+      "case": "ensemble-real-artifact-review",
+      "exit_code": 0,
+      "outputs": 10,
+      "source_master_sha256_verified": true,
+      "candidate_master_sha256_verified": true,
+      "visual_review": "unassessed"
+    },
+    {
+      "case": "portrait-real-artifact-review",
+      "exit_code": 0,
+      "outputs": 10,
+      "source_master_sha256_verified": true,
+      "candidate_master_sha256_verified": true,
+      "visual_review": "unassessed"
+    }
+  ]
+}

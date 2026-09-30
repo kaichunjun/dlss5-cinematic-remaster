@@ -1,35 +1,51 @@
 ---
 name: dlss5-cinematic-remaster
-description: Relight anime, game and CG images with Normal or Deep cinematic enhancement, preserving the supplied artwork and checking visible uplift separately from identity and layout drift. Use for DLSS5-inspired image edits; actual runtime configuration is a separate optional reference.
+description: Relight existing anime, game, CG and photographic images with Normal or Deep cinematic enhancement. Use for DLSS5-inspired image remastering with visible atmosphere, source-faithful color, protected identity/layout and inspected comparisons; this is an image-edit workflow, not a DLSS runtime.
 ---
 
-# DLSS5-inspired cinematic remaster — v2
+# Cinematic relighting — v3
 
-Create **clearly visible lighting and material-response changes on the existing artwork**. The reusable look is dimensional illumination, environmental light wrap, readable shadows, selective glow and distinct materials without smear. Do not impose a fixed palette or recreate the scene. This is a prompt-based image-edit workflow, not the DLSS runtime.
+Create visibly stronger illumination, readable form shadows, environmental light wrap and differentiated existing materials on the **same image**. The reusable style is light coherence and dimensionality, not a fixed palette, scene, character or photorealistic makeover. Deep increases lighting amplitude, while retaining Normal's content protections. Prompts guide an editor; they do not lock pixels or reconstruct render buffers.
 
-## Decide the mode first
+## 1. Choose the mode first
 
-Ask yourself **Normal or Deep?** State the choice briefly. Respect an explicit user selection. Infer Deep for “明显”, “深度”, “帅”, “氛围强”, or “拉满”; infer Normal for faithful cleanup or restrained edits. Ask the user only when the choice cannot be inferred and materially changes the result. Complex compositions require tighter structural protection in either mode, rather than an automatic downgrade of the user's requested intensity.
+Ask yourself **Normal or Deep?** Follow an explicit selection; otherwise infer Deep for “明显／深度／帅／氛围强／拉满”, Normal for restrained enhancement. State the choice in one sentence. Ask only when a missing preference materially changes the task. Crowded images call for tighter preservation, not automatically weaker enhancement.
 
-- **Normal:** clearly improved material separation, local shading and highlight rolloff; restrained atmosphere.
-- **Deep:** conspicuous light/shadow hierarchy and environmental illumination; stronger source-supported rim light, bounce, contact shadows and spatial separation. It must look stronger at fit-to-screen size while preserving character and object design.
+| Mode | Visible target | Color/content rule |
+|---|---|---|
+| Normal | Clear, restrained improvement to form shading, material separation and highlight rolloff | Preserve source palette intensity, identity and layout |
+| Deep | Obvious light/shadow hierarchy, environmental bounce, deliberate existing highlights and spatial separation | Same protections; extra saturation, new effects and scene redesign require an explicit request |
 
-Deep raises **lighting amplitude**, not creative freedom. “拉满” never silently permits a new setting, new celestial bodies, denser particle fields, replacement fireworks, costume changes or face redesign.
+## 2. Inspect and freeze the edit brief
 
-## Execute with two independent acceptance gates
+Inspect each current input. Label every image **edit target**, **style/light reference**, or **supporting input**. The original target controls content and color; a reference lends only explicitly chosen visual properties. Do not carry subjects, settings, colors or example-specific restrictions into another job.
 
-1. Inspect the original source with the image tool. Record visible subject count (including small background subjects), identity features, pose, crop, object layout, text/overlays, palette, actual light evidence and existing materials. Keep overlay handling unchanged unless the user requests a change. Infer appearance only, not hidden depth, normals or missing textures.
-2. Read [prompt-recipes.md](references/prompt-recipes.md). Use its **relighting-only core** and one mode suffix. Fill the scene fields using only this image. Apply no example-scene nouns from a previous job. Supply this job's original source as the edit target; style-reference images are optional and never structural targets.
-3. Use the built-in image editor when available. Do not claim that prompt instructions are masks, geometry locks or actual PBR reconstruction. If the tool has no denoise/mask/seed control, do not invent those settings or switch tools silently. Structural conditioning may improve control on an explicitly selected pipeline but must be checked on output.
-4. Produce one candidate. Save the exact prompt, available tool settings, source/output paths and tool identity. Compare complete source/output views at the same display scale, then inspect every face, hands, costume symbols and small subjects at 100%. A center wipe alone hides cross-half changes and is insufficient for acceptance.
-5. Apply the structure and uplift gates from [evaluation.md](references/evaluation.md). Structure failures cannot be offset by good lighting. Weak uplift cannot pass solely because structure is retained. Avoid precise numeric scores without supporting observations.
-6. **At most two corrections after the first candidate.** Always return to the original source. For drift, narrow the editable area/operation or reduce its amplitude; for weak uplift, raise only one source-supported lighting relationship (e.g. lit side versus shadow side), keeping the same palette and objects. For smear, reduce diffusion/reconstruction demand; added sharpening is not a repair. Never chain generated frames or compensate with a longer list of cinematic adjectives.
-7. Deliver a passing candidate with a matched comparison and a brief description of the actual changes. If no candidate passes both gates, label the best preview with its remaining issue and report that this attempt failed; preserve the source. Do not quietly deliver a redesigned or nearly identical frame as success.
+Record a compact preservation map: visible subjects (including distant figures), faces/gaze/expression, pose/contacts, silhouettes, costume motifs, props, crop/layout, text/overlays and original medium. Mark invisible/unclear details unknown rather than inventing them. Identify the actual bright regions, light direction, neutral surfaces and two or three existing material differences. Read [requirements.md](references/requirements.md) only for a scope audit.
 
-## Reliability and references
+Define the edit as **lighting/shading/existing material response**. Default to the source's chroma; increase impact through luminance, contact shadows and coherent highlights. Protect skin, whites and neutrals. Colored bounce stays local to surfaces reached by existing lights. Deep does not authorize orange parchment, electric-blue backgrounds, added planets, extra particles, new fog or costume redesign. Never repair saturation by adding a gray veil or flattening the requested light hierarchy.
 
-Bundled older comparisons are visual-direction references, not a success-rate study. The user-labeled runtime portrait is a lighting reference with unverified processing provenance. See [evaluation.md](references/evaluation.md) for current test evidence.
+## 3. Match the real tool and medium
 
-Call the workflow **v2 with acceptance gates**. Call a result `passed-on-this-image` only after inspection. Calling a model/mode stable requires repeated passes on varied images, including portraits and crowded compositions; report sample counts, failures, model and date. Neither a document validator nor a single attractive image establishes stability. Video requires temporal validation beyond single-frame results.
+Read [prompt-recipes.md](references/prompt-recipes.md); fill only current-image observations and append one mode. Adapt to illustration, CG or photography without changing medium. For strict pixel/geometry preservation, say whether the selected tool actually supports protected masks or reversible adjustments. A prompt-based full-frame edit remains approximate.
 
-For an explicit request about a NeuralScreen/Visual Enhancer runtime, read [runtime-controls.md](references/runtime-controls.md); do not conflate community labels or empirical knobs with verified DLSS behavior.
+Use the available built-in image editor by default, respecting its imagegen instructions and preserving transparency. Read [tool-adapters.md](references/tool-adapters.md) for an explicitly selected external/controlled pipeline, batch, video or new-image request. Check live schemas before setting knobs; unavailable seed, denoise, mask or conditioning controls stay `not exposed`. Do not switch services or install models merely to conceal a limitation.
+
+## 4. Generate, inspect, correct
+
+Generate one candidate non-destructively. Save the exact prompt, ordered input roles, available settings, tool/model identity (unknown if unexposed), returned file and lineage to the original.
+
+Read [evaluation.md](references/evaluation.md). Inspect full images at matched display scale **and** native-size detail views. Apply four independent gates: **content/identity**, **visible lighting uplift**, **source-faithful color**, **clarity/coherence**. Inspect every visible face, hand/held prop, emblem and small figure; identify limitations at the delivered resolution. A flattering face, stronger color or center wipe alone cannot pass the result.
+
+Allow at most two targeted corrections after the initial candidate. Return to the original; change one diagnosed axis. Weak effect: strengthen one existing lit/shadow relationship. Drift: narrow the operation or use a supported protected-region workflow. Excess color: name the overcolored regions while preserving shading. Smear: reduce reconstruction demand; sharpening does not recover lost linework. Do not chain generated frames, keep appending adjectives or retry indefinitely.
+
+## 5. Deliver verifiable results
+
+Deliver the actual output, source-left/result-right complete comparison and center wipe when useful/requested. Use [scripts/review_artifact.py](scripts/review_artifact.py) for repeatable comparison files and metadata if Python + FFmpeg/ffprobe are available; it formats evidence, **never decides aesthetic success**. See [evaluation.md](references/evaluation.md) for its invocation. Preserve the master; label resized comparisons as previews.
+
+Report `passed-on-this-image`, `qualified-preview`, `failed` or `unassessed`, with concrete changes and remaining issues. A critical content failure cannot win; if no candidate meets the brief, report failure with a labeled preview rather than claiming completion. User approval is distinct from assistant assessment. File/schema validation is distinct from visual quality; single frames do not prove temporal stability.
+
+## Optional references
+
+- [Skill audit](references/skill-audit.md): dated review scope, adopted/rejected patterns and primary sources; read for methodology/research, not every edit.
+- [Validation record](references/validation-v3.md): actual sample observations, failures and unknowns; read before making reliability claims.
+- [Runtime notes](references/runtime-controls.md): separate historical community-app notes, only for an explicit runtime request. This package contains no DLSS binary/model and does not process a desktop or game in real time.
