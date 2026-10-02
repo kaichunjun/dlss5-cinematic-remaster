@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "mode": "Deep",
+  "intent": "Per-image traditional adjustment study of the rain-night portrait; no redraw, source geometry retained",
+  "layers": [
+    {
+      "name": "Tonal foundation",
+      "purpose": "Separate existing illumination from dark alley surfaces",
+      "operation": "curve",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0.12,
+          0.08
+        ],
+        [
+          0.3,
+          0.28
+        ],
+        [
+          0.55,
+          0.61
+        ],
+        [
+          0.8,
+          0.86
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "opacity": 0.85,
+      "masks": [
+        {
+          "type": "all"
+        }
+      ]
+    },
+    {
+      "name": "Face in existing lantern light",
+      "purpose": "Make the face readable without changing facial lines",
+      "operation": "exposure",
+      "ev": 0.45,
+      "opacity": 0.8,
+      "masks": [
+        {
+          "type": "ellipse",
+          "center": [
+            0.397,
+            0.233
+          ],
+          "radius": [
+            0.13,
+            0.195
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lit hair and right shoulder",
+      "purpose": "Shape the side facing the warm shop, without adding strands",
+      "operation": "exposure",
+      "ev": 0.55,
+      "opacity": 0.8,
+      "masks": [
+        {
+          "type": "ellipse",
+          "center": [
+            0.449,
+            0.332
+          ],
+          "radius": [
+            0.1,
+            0.28
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cool-side clothing shadow",
+      "purpose": "Separate the backlit sleeve from the lit front",
+      "operation": "exposure",
+      "ev": -0.55,
+      "opacity": 0.65,
+      "masks": [
+        {
+          "type": "ellipse",
+          "center": [
+            0.3,
+            0.56
+          ],
+          "radius": [
+            0.095,
+            0.28
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Existing front material highlights",
+      "purpose": "Make existing folds and metal more readable",
+      "operation": "exposure",
+      "ev": 0.4,
+      "opacity": 0.6,
+      "masks": [
+        {
+          "type": "ellipse",
+          "center": [
+            0.427,
+            0.62
+          ],
+          "radius": [
+            0.105,
+            0.23
+          ]
+        },
+        {
+          "type": "luminance",
+          "range": [
+            0.04,
+            0.13,
+            0.65,
+            0.93
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lantern side color only",
+      "purpose": "A restrained warm contribution on the existing shop-facing side",
+      "operation": "color_balance",
+      "offset_rgb": [
+        0.014,
+        0.004,
+        -0.008
+      ],
+      "opacity": 0.45,
+      "masks": [
+        {
+          "type": "ellipse",
+          "center": [
+            0.45,
+            0.3
+          ],
+          "radius": [
+            0.1,
+            0.27
+          ]
+        }
+      ]
+    }
+  ]
+}

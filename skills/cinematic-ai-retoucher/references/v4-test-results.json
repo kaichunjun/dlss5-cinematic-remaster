@@ -1,0 +1,88 @@
+{
+  "method": "traditional deterministic pixel adjustments",
+  "source_cases": 1,
+  "mode_variants": 2,
+  "deep_replay": 1,
+  "runs": [
+    {
+      "mode": "normal",
+      "source_sha256": "37ce0b800ddc784f11137d2ba3295166bc4c8c9f35349f7d9fabdcc251b081b4",
+      "recipe": "references/v4-portrait-normal.json",
+      "recipe_sha256": "6ad77a96c63e7098425dc5f353c48a57781e293c7cba15ba8e0d1d9158881025",
+      "result": "assets/v4-portrait-normal-result.png",
+      "result_sha256": "526630d22ca2c84b04441bcbb35f04a623b92468742e10dbf10aee7da79b7373",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "dependencies": {
+        "numpy": "2.3.5",
+        "pillow": "12.3.0",
+        "python": "3.12.14"
+      },
+      "assistant_assessment": "passed-on-this-image",
+      "user_approval": "pending",
+      "observations": [
+        "Existing face illumination strengthened, lit/front versus backlit sleeve separation is more readable.",
+        "Face lines, hair locks, costume motifs, hand and sword geometry retained; no resampling or synthesis.",
+        "No saturation boost or artwork blur used; background remains the original rain alley."
+      ],
+      "limitations": [
+        "One still input, two modes; not a varied image benchmark or video test.",
+        "Broad soft selections demonstrate traditional adjustment, not precise manual material masks or 3D light reconstruction."
+      ]
+    },
+    {
+      "mode": "deep",
+      "source_sha256": "37ce0b800ddc784f11137d2ba3295166bc4c8c9f35349f7d9fabdcc251b081b4",
+      "recipe": "references/v4-portrait-deep.json",
+      "recipe_sha256": "5ec246eb3e9dfa983a7eabe13e68823af45c4e40f79e6f4b2297a6de7be85315",
+      "result": "assets/v4-portrait-deep-result.png",
+      "result_sha256": "bdfca38e39601fd2065992dc542e7f909f6f8a72a4b938c65f2ccb9c84e946ea",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "dependencies": {
+        "numpy": "2.3.5",
+        "pillow": "12.3.0",
+        "python": "3.12.14"
+      },
+      "assistant_assessment": "passed-on-this-image",
+      "user_approval": "pending",
+      "observations": [
+        "Existing face illumination strengthened, lit/front versus backlit sleeve separation is more readable.",
+        "Face lines, hair locks, costume motifs, hand and sword geometry retained; no resampling or synthesis.",
+        "No saturation boost or artwork blur used; background remains the original rain alley."
+      ],
+      "limitations": [
+        "One still input, two modes; not a varied image benchmark or video test.",
+        "Broad soft selections demonstrate traditional adjustment, not precise manual material masks or 3D light reconstruction."
+      ]
+    }
+  ],
+  "computational_checks": {
+    "checks": {
+      "no_op_decoded_rgba_exact": true,
+      "canonical_output_icc_parses": true,
+      "zero_mask_exact": true,
+      "alpha_exact": true,
+      "transparent_hidden_rgb_exact": true,
+      "source_dimensions_retained": true,
+      "replay_png_sha256_exact": true,
+      "source_file_untouched": true,
+      "nonmonotonic_curve_rejected": true,
+      "misrouted_parameter_rejected": true,
+      "16bit_input_rejected": true,
+      "existing_output_rejected": true,
+      "real_portrait_replay_png_exact": true,
+      "real_portrait_replay_pixels_exact": true
+    },
+    "all_passed": true,
+    "helper_sha256": "a43c069bd3a8671352a312d68e63563db0168741811dc967142cd68ee570cd19",
+    "aesthetic_success_proven": false,
+    "earlier_issue": "Initial replay had identical pixels but different generated-ICC timestamps; fixed canonical profile metadata, then reran these checks."
+  },
+  "native_photoshop_psd_tested": false,
+  "video_tested": false
+}

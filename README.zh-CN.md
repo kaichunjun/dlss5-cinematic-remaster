@@ -1,74 +1,61 @@
-# 电影光感调色与局部光影 Skill · v4
+# 电影光感双 Skill：AI 调度与 AI 修图师
 
 [English](README.md)
 
-**像手工 PS 一样，用曲线、局部蒙版、加深减淡和克制调色塑造光感。** AI 负责分析与执行，默认对原有像素做传统调整，沿用原图的脸、线条、纹样和构图。每张图单独设计调整层，继承方法而非套用示例人物或坐标。
+同一个 GitHub 项目提供 **两个独立、可单独安装的 Skill**。两者都让 AI 先分析当前图片，并在正常档／深度档之间选择；执行方法明确分开。
 
-保留历史调用名 `dlss5-cinematic-remaster`。DLSS5 指视觉灵感；本仓库没有 NVIDIA 模型／运行时，也没有 Windows 实时桌面过滤器。
+| | [AI 调度版](skills/cinematic-ai-remaster) | [AI 修图师版](skills/cinematic-ai-retoucher) |
+|---|---|---|
+| 调用名 | `cinematic-ai-remaster` | `cinematic-ai-retoucher` |
+| 执行方法 | AI 调度图像生成工具，做光影重绘 | AI 当修图师，用曲线、蒙版、加深减淡与调色 |
+| 适用方向 | 更自由的材质／光影重构，接受生成变化 | 优先沿用原图脸、线条、纹样和构图 |
+| 原图保持 | 提示词约束＋生成后检查；细节仍可能偏移 | 使用已有像素做调整；检查遮蔽、过曝和色彩 |
+| 正常／深度 | 都有；差别在光影强度 | 都有；深度档也走纯调整 |
+| 交付 | 图片、提示词、实际设置与评审 | 图片、真实调整层或蒙版／步骤／JSON 配方 |
 
-## 正常／深度两档
+DLSS5 为历史项目名及视觉灵感。这里提供给 AI 助手使用的工作流，没有 NVIDIA 模型／DLSS 运行时或实时游戏／桌面过滤器。
 
-| 档位 | 处理目标 |
-|---|---|
-| Normal 正常档 | 清楚、克制地增强形体明暗、材质分离与高光层次 |
-| Deep 深度档 | 更明显的焦点受光、背光阴影、局部环境光与空间层次 |
+## 独立下载
 
-两档都默认纯调整、原图色彩强度优先。深度档提高光影幅度；饱和度增强、全图模糊和生成式重绘均非默认。生成式重构只在明确要求时启用，工具缺失也会如实说明，避免悄悄换成重绘。
+- [AI 调度版 ZIP](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/download/v5.0.0/cinematic-ai-remaster-v5.0.0.zip)：生成式光影重绘。
+- [AI 修图师版 ZIP](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/download/v5.0.0/cinematic-ai-retoucher-v5.0.0.zip)：传统纯调整。
+- [发布页与 SHA-256 校验](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/tag/v5.0.0)。
 
-## v4 的实际对比
+## 分别安装与调用
 
-同一张雨夜图做传统调整，**左原图，右结果**：脸部受光更亮、背光衣袖更深，背景、发丝、表情和饰物沿用原件。下图是展示预览；完整原生尺寸图及细节另行检查。
+分别下载对应 Skill 包，或从本仓库 `skills/` 复制所选的整个文件夹。无需同时安装两份。
 
-![Deep 纯调整完整左右对比](assets/v4-portrait-deep-side-by-side.png)
+- macOS／Linux：放进 `~/.codex/skills/`。
+- Windows：放进 `%USERPROFILE%\.codex\skills\`。
 
-[原图](assets/v4-portrait-source.png) · [中线划像对比](assets/v4-portrait-deep-center-wipe.png) · [原尺寸结果](assets/v4-portrait-deep-result.png) · [Normal 完整对比](assets/v4-portrait-normal-side-by-side.png)
-
-新流程测试一个输入、两档和一次深度档复算，14 项计算检查通过；助手在该图上视觉验收通过，用户审美确认待定。没有宣称全题材稳定成功率。旧版生成对比见 [v3 历史记录](references/validation-v3.md)，它们无法证明新流程的效果。详见 [v4 验证](references/validation-v4.md)。
-
-## 安装与调用
-
-macOS／Linux：
-
-```bash
-git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git ~/.codex/skills/dlss5-cinematic-remaster
-```
-
-Windows PowerShell：
-
-```powershell
-git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git "$env:USERPROFILE\.codex\skills\dlss5-cinematic-remaster"
-```
-
-也可将仓库文件夹复制到 Skill 目录。已有干净克隆可 `git pull --ff-only`，更新前保留自己的修改；安装后若未出现，重启 Codex。附图调用：
+重启 Codex 后附图调用：
 
 ```text
-$dlss5-cinematic-remaster 深度档，纯调整：用曲线和局部蒙版做明显光感，保留原图线条、脸和纹样，色彩克制。
+$cinematic-ai-remaster 深度档：用 AI 生成工具做明显光影重绘，保留人物构图，色彩克制。
 ```
 
-优先用宿主里实际可用的图像编辑器调整层；宿主无需图像生成模型。原生编辑器可以保留其支持的图层文件，连接器若仅给扁平图则明确标注。
-
-本地备用工具需要 Python 3.9+、NumPy 和 Pillow，实际执行：
-
-```bash
-python scripts/apply_adjustments.py --source your-source.png --recipe your-image.json --output-dir grade-new
+```text
+$cinematic-ai-retoucher 深度档，纯调整：用曲线、蒙版和加深减淡增强光感，保留原图线条与纹样。
 ```
 
-AI 按当前图片写 `your-image.json`；[示例配方](references/v4-portrait-deep.json)仅适用于这里的雨夜图。工具返回结果 PNG、逐层步骤、蒙版及可复算 JSON，**没有伪称 PSD 或独立 EXE**。支持单张 8-bit RGB/RGBA；16-bit/HDR 母版应在支持它的原生编辑器处理。原图保留，输出目录须为新目录。
+AI 调度版需要宿主可用的生成工具。AI 修图师版优先用原生编辑器，另附 Python／NumPy／Pillow 备用计算工具；具体依赖、真实能力与使用方法见各自目录说明。
 
-## 文件与方法
+## 同题材、不同执行方式
 
-- [SKILL.md](SKILL.md)：双档、纯调整默认路线、逐图分析与验收。
-- [adjustment-workflow.md](references/adjustment-workflow.md)：Photoshop 调整层方法、本地配方语法与真实计算边界。
-- [apply_adjustments.py](scripts/apply_adjustments.py)：确定性调整；无生成模型、几何重采样、修补或画面模糊。
-- [tool-adapters.md](references/tool-adapters.md)：原生编辑器、连接器、批量／视频、显式生成路线。
-- [requirements.md](references/requirements.md)、[evaluation.md](references/evaluation.md)：完整需求和四项验收。
-- [review_artifact.py](scripts/review_artifact.py)：Python + FFmpeg/ffprobe，生成对比及原生细节裁切，保持母版；脚本不自动评画质。
-- [skill-audit.md](references/skill-audit.md)：此前 Skill 调研与本轮方法修订；历史 [prompt-recipes.md](references/prompt-recipes.md)只给显式生成请求使用。
+下面是同一雨夜原件的两条历史路线，各自都为**左原图、右结果**。生成例为 Normal，纯调整例为 Deep，档位与日期不同；用于理解方法，不能当作同设置受控画质排名。拆分当天没有重新生成图片。
 
-光感由现有像素的明暗／色彩关系塑造；真实三维光照与缺失纹理没有因此重建。蒙版与强度仍需逐图设计。自写文档与脚本使用 [MIT License](LICENSE)，第三方示例权利说明见 [NOTICE.md](NOTICE.md)。
+AI 调度版：生成式重绘，继承 2026-09-30 的 v3 结果。
 
-复算仓库中的深度档示例（已包含原图与配方）：
+![AI 调度生成对比](skills/cinematic-ai-remaster/assets/v3-portrait-side-by-side.png)
 
-```bash
-python scripts/apply_adjustments.py --source assets/v4-portrait-source.png --recipe references/v4-portrait-deep.json --output-dir portrait-deep-demo
-```
+AI 修图师版：传统纯调整，继承 v4 结果，并核对拆分包复算。
+
+![AI 修图师纯调整对比](skills/cinematic-ai-retoucher/assets/v4-portrait-deep-side-by-side.png)
+
+[生成路线证据](skills/cinematic-ai-remaster/references/validation.md) · [纯调整路线证据](skills/cinematic-ai-retoucher/references/validation.md)
+
+## 历史兼容与权利
+
+根目录的 `dlss5-cinematic-remaster` 保留为旧 v4 入口，继续默认传统调整；新安装推荐上面的两个独立调用名。既有文件与实验记录保留。AI 调度版不会因效果弱而自动换成修图师路线，修图师版也会避免转成生成；改变方法时明确告知并遵循用户选择。
+
+自写文本／脚本使用 [MIT License](LICENSE)，角色与第三方示例权利见 [NOTICE.md](NOTICE.md)。每条路线的证据与限制分开；文件格式检查无法证明所有题材的审美稳定性。

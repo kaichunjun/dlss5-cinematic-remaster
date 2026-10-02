@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 调度｜生成式光影重绘"
+  short_description: "调度图像生成工具塑造双档电影光感，保留原件参考并检查重绘偏移"
+  default_prompt: "使用 $cinematic-ai-remaster 调度图像生成工具，以深度档增强这张图的电影光感，保留原图人物、构图与克制色彩。"

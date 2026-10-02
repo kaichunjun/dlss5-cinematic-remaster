@@ -1,70 +1,56 @@
-# Cinematic tonal grading and local light shaping · v4
+# Two cinematic-light Skills: AI dispatch and AI retoucher
 
 [简体中文](README.zh-CN.md)
 
-A reusable **traditional adjustment-first** Skill for illustrations, game images, CG and photos. The assistant analyzes the source and designs curves, local masks, dodge/burn and restrained color layers. Existing faces, lines, motifs and layout remain the source geometry. Each image gets its own treatment rather than inheriting example subjects or coordinates.
+Two independently installable Skills in one GitHub repository. Both analyze the current source and choose **Normal or Deep**; execution routes stay separate.
 
-The legacy identifier is `dlss5-cinematic-remaster`. DLSS5 denotes visual inspiration; no NVIDIA model/runtime or always-on desktop/game filter is bundled.
+| | [AI dispatch](skills/cinematic-ai-remaster) | [AI retoucher](skills/cinematic-ai-retoucher) |
+|---|---|---|
+| Invocation | `cinematic-ai-remaster` | `cinematic-ai-retoucher` |
+| Method | Orchestrate a generative image editor to redraw light/material response | Traditional curves, local masks, dodge/burn and restrained color |
+| Best fit | More flexible reconstruction, accepting generated variation | Preserve existing faces, lines, motifs and layout |
+| Fidelity | Prompt goals plus inspection; details can drift | Existing-pixel adjustments; inspect obscured detail and clipping |
+| Normal / Deep | Both, with source-content/color protections | Both; Deep remains adjustment-only |
+| Evidence delivered | Image, exact prompt, exposed settings and assessment | Image, actual layers or masks/steps/replayable recipe |
 
-| Mode | Target |
-|---|---|
-| Normal | Clear, restrained form shading, material separation and highlight hierarchy |
-| Deep | More obvious focal light, backlit shade, local environment response and spatial separation |
+DLSS5 is the legacy repository name and visual inspiration. Neither package contains NVIDIA/DLSS models, a runtime, or an always-on game/desktop filter.
 
-Both modes default to traditional pixel adjustments and source-strength color. Deep does not authorize saturation boosts, whole-image blur or synthesis. Generative reconstruction is **explicit opt-in only**; unavailable adjustment tools are reported, not silently replaced with a model.
+## Separate downloads
 
-## Current example
+- [AI-dispatch ZIP](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/download/v5.0.0/cinematic-ai-remaster-v5.0.0.zip): generative relighting.
+- [AI-retoucher ZIP](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/download/v5.0.0/cinematic-ai-retoucher-v5.0.0.zip): traditional adjustments.
+- [Release and SHA-256 checks](https://github.com/kaichunjun/dlss5-cinematic-remaster/releases/tag/v5.0.0).
 
-Traditional adjustment of the same rain-night source. **Source left, Deep result right**: brighter existing facial illumination and a darker backlit sleeve; original hair, expression, motifs and alley retained. Preview scaling is for presentation only.
+## Install only the route you need
 
-![Deep traditional-adjustment full pair](assets/v4-portrait-deep-side-by-side.png)
-
-[Original source](assets/v4-portrait-source.png) · [Center wipe](assets/v4-portrait-deep-center-wipe.png) · [Native result](assets/v4-portrait-deep-result.png) · [Normal full pair](assets/v4-portrait-normal-side-by-side.png)
-
-One source, two mode variants and one Deep replay. Fourteen computational checks passed; assistant visual review passed on this image, user aesthetic approval is pending. No universal success rate is claimed. [v4 validation](references/validation-v4.md) distinguishes computation, visual judgment and limits. [v3 tests](references/validation-v3.md) are historical generative evidence, not validation of this default route.
-
-## Install and use
-
-macOS/Linux:
-
-```bash
-git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git ~/.codex/skills/dlss5-cinematic-remaster
-```
-
-Windows PowerShell:
-
-```powershell
-git clone https://github.com/kaichunjun/dlss5-cinematic-remaster.git "$env:USERPROFILE\.codex\skills\dlss5-cinematic-remaster"
-```
-
-Or copy the folder into your Skill directory. A clean existing clone can `git pull --ff-only`; preserve local customizations. Restart Codex if discovery needs refreshing. Attach your image:
+Download the selected Skill package or copy its complete folder from `skills/` into `~/.codex/skills/` (Windows: `%USERPROFILE%\.codex\skills\`). You may install either or both. Restart Codex if needed, attach a source, and invoke:
 
 ```text
-$dlss5-cinematic-remaster Deep, traditional adjustments only: visible light shaping with curves and local masks, retain original faces/lines/motifs and restrained source color.
+$cinematic-ai-remaster Deep: generative cinematic relighting, retain source characters/layout and restrained color.
 ```
 
-Prefer real reversible adjustment layers in an available native editor. Label flattened connector output honestly. The optional local fallback requires Python 3.9+, NumPy and Pillow:
-
-```bash
-python scripts/apply_adjustments.py --source your-source.png --recipe your-image.json --output-dir grade-new
+```text
+$cinematic-ai-retoucher Deep, traditional adjustments only: use curves and local masks, retain original faces/lines/motifs.
 ```
 
-The assistant designs the recipe for that input. The [portrait recipe](references/v4-portrait-deep.json) is example-specific, not a universal preset. Output includes PNG result, masks, numbered layer steps and replayable JSON; **not a PSD or standalone EXE**. Single 8-bit RGB/RGBA inputs only; use a suitable native editor for 16-bit/HDR masters. A new output directory protects existing files.
+The dispatch route needs an available host generation tool. The retoucher prefers a native image editor and bundles an optional Python/NumPy/Pillow fallback. Each folder documents real dependencies, capability limits and output formats; PNG steps/JSON are never claimed as PSD layers.
 
-## Resources
+## Same subject, distinct routes
 
-- [SKILL.md](SKILL.md): mode decision, source analysis, default method and review.
-- [adjustment-workflow.md](references/adjustment-workflow.md): Photoshop layer guidance, local schema and exact computational limits.
-- [apply_adjustments.py](scripts/apply_adjustments.py): deterministic processing; no synthesis, geometric resampling, inpainting or artwork blur.
-- [tool-adapters.md](references/tool-adapters.md): native/connector capabilities, batches/video and opt-in synthesis.
-- [requirements.md](references/requirements.md), [evaluation.md](references/evaluation.md): complete brief and four independent gates.
-- [review_artifact.py](scripts/review_artifact.py): Python + FFmpeg/ffprobe comparison/native-crop helper; it never grades aesthetics.
-- [skill-audit.md](references/skill-audit.md): previous source review and this method revision. [Legacy prompts](references/prompt-recipes.md) apply only to explicit generation.
+Each pair is **source left, result right**. These are historical examples: generative Normal versus adjustment Deep, with different modes/dates. They explain methods, not a controlled same-setting ranking. No new generation was performed for this split.
 
-This shapes apparent light through existing pixel relationships; it does not reconstruct missing texture or true 3D light transport. Masks and strength require image-specific judgment. Own text/scripts: [MIT License](LICENSE); underlying sample/character rights: [NOTICE.md](NOTICE.md).
+Generative dispatch, inherited v3 example:
 
-Replay the bundled Deep example (source and recipe included):
+![Generative dispatch pair](skills/cinematic-ai-remaster/assets/v3-portrait-side-by-side.png)
 
-```bash
-python scripts/apply_adjustments.py --source assets/v4-portrait-source.png --recipe references/v4-portrait-deep.json --output-dir portrait-deep-demo
-```
+Traditional retoucher, inherited v4 example and package replay:
+
+![Traditional retoucher pair](skills/cinematic-ai-retoucher/assets/v4-portrait-deep-side-by-side.png)
+
+[Generative evidence](skills/cinematic-ai-remaster/references/validation.md) · [Adjustment evidence](skills/cinematic-ai-retoucher/references/validation.md)
+
+## Compatibility and rights
+
+The root `dlss5-cinematic-remaster` remains the legacy v4 entry with traditional adjustments as default. New installation uses the two separate names above. Historical files/evidence are retained; neither new route silently switches to the other when its result is weak.
+
+Own text/scripts: [MIT License](LICENSE). Underlying sample/character rights: [NOTICE.md](NOTICE.md). Package/schema validation and aesthetic reliability are distinct; no universal image-quality guarantee is claimed.

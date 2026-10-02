@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-30",
+  "tool": "image_gen.imagegen",
+  "underlying_model_version": "not exposed",
+  "controls": {
+    "transparent_background": false,
+    "seed": "not exposed",
+    "denoise": "not exposed",
+    "mask": "not exposed",
+    "requested_dimensions": "not exposed"
+  },
+  "trials": [
+    {
+      "id": "v3-ensemble-deep",
+      "input_role": "original edit target; no style reference",
+      "prompt": "Edit the supplied original illustration in place, preserving its artwork, 16:9 framing, layout and anime identities. Deep mode means visibly stronger SHADING AND LIGHT RESPONSE, while color saturation stays close to this source. This is the same illustrated ensemble, not a replacement scene.\nPreserve the eight main figures and two tiny distant figures, every expression and pose, hair and costume designs, hand gestures, jewelry and emblems, the curling parchment ribbon, central garden, balloons, feathers, fireworks, stars and musical staves. Do not add or remove subjects or scenery. Do not beautify, change anatomy or make anime faces photorealistic.\nLight direction: the existing pale luminous central garden and illuminated parchment act as broad soft bounce; the already-glowing musical arcs give gentle cyan edge light. Make the light-facing planes of the parchment luminous champagne ivory and leave unlit parchment beige/tan, with substantially deeper but readable shadows underneath its existing overlaps. Give the existing characters more dimensional yet clean shading: soft warm-neutral highlights, clearly shaped shadowed sides and contact shadows under existing hair, cloth folds, jewelry and overlaps. Differentiate matte fabric, restrained satin sheen and small existing metallic specular highlights. Keep edges and ornament outlines sharp, with localized glow only at existing emissive lines and luminous cores. Stronger light-and-shadow separation must be visible at full image size.\nCOLOR PRIORITY: preserve the original image's color intensity. Dark navy sky remains muted navy, never electric cobalt. Parchment remains beige/ivory, never saturated orange. White clothes stay neutral ivory/white, not yellow or cyan. Skin stays source-faithful. Existing blue dresses use restrained blue-gray shadow tones, not intensely saturated royal blue. Keep the original vivid colors where they already exist; reduce neither the whole image to gray nor all its colors uniformly. Confine subtle colored bounce to surfaces reached by the original lights. Obtain the clear uplift through luminance, occlusion, broad form shading and material highlights, not boosted vibrance or a complementary-color filter.\nKeep clean anime linework and source texture vocabulary. No new pores, decorative patterns, extra particles, planets, fog, background reconstruction, palette replacement, global bloom veil, blur, paint smear, black crush, clipping or sharpening halos. Match all source silhouettes and face feature positions as closely as possible. Deliver one complete edited illustration without labels or comparison layout.",
+      "source_filename": "ensemble-source.jpg",
+      "result_filename": "ensemble-v3.png"
+    },
+    {
+      "id": "v3-portrait-normal",
+      "input_role": "original baseline edit target; no style reference",
+      "prompt": "Edit this exact supplied anime illustration using Normal mode: a clear, restrained improvement to existing light and material response, retaining its same composition and source color intensity. Preserve the one character's face proportions, gray eyes, gaze, slightly parted lips, hairline and ponytail, pose, sword grip, shoulder badge, buckle shapes, costume seams, swords, alley objects, lantern, vending machine, cars and rain. Keep the original crop and drawn silhouette. No beautification or new pores, no realistic face substitution or new accessories.\nUse only the visible right-side warm lantern and the distant existing cool city lights. Give the lantern-facing sides of the existing jacket and hair gentle warm-neutral light wrap, shape readable shadows under the collar, hair and existing straps, and add small coherent highlights to the existing metal fittings. Improve separation of the dark cloth, matte leather straps and dull metal without making everything glossy. Keep the wet street's existing reflections tied to their actual lights and preserve their shapes. The light-facing folds and occluded folds should be clearly easier to distinguish, while the mood remains the same calm rainy night.\nSource colors stay authoritative: keep the navy fabric dark navy, amber light local, white/cool highlights neutral, skin close to the source. No global saturation boost, orange-teal grade, brighter neon city or black crush. Keep the rain and distant softness already present but add no fog, particles, enlarged bloom or lens change. Keep face, hair clumps, grip, small emblems and stitching crisp; no painted smear or sharpening halos. Relight existing shapes only; do not reconstruct the scene or redesign background text. Deliver one complete image without labels.",
+      "source_filename": "portrait-source.png",
+      "result_filename": "portrait-v3.png"
+    }
+  ]
+}

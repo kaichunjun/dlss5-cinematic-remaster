@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 修图师｜纯调整光感"
+  short_description: "用曲线、局部蒙版和加深减淡塑造双档电影光感，沿用原图结构与线条"
+  default_prompt: "使用 $cinematic-ai-retoucher，以深度档用曲线、蒙版和加深减淡增强光感，保留原图线条、脸与纹样，执行纯调整。"
